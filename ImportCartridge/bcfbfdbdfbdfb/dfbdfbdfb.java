@@ -9,10 +9,10 @@ public class dfbdfbdfb implements IProcessing {
             //perform processing here
         }
         catch(FieldNotFoundException fnf) {
-            //throw new ValidationException("Field Not Found");
+            throw new ValidationException("Field Not Found");
         }
         catch(FieldTypeMismatchException fme) {
-            //throw new ValidationException("Field Type Mismatch");
+            throw new ValidationException("Field Type Mismatch Identified");
         }
     }
 }
