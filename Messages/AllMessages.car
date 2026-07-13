@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cartridge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="7.0.1-SNAPSHOT" name="AllMessages" type="Cartridge" id="00b2257e-1d54-4e67-89a8-f52f114a0960">
+	<version>1.0</version>
+	<read-only>false</read-only>
+	<private>
+		<summary>
+			<service name="InvoiceIn" version="1.0" type="External Message">
+			</service>
+			<service name="ServerNode" version="1.0" type="RESTServer">
+			</service>
+			<service name="ClientNode" version="1.0" type="RESTClient">
+			</service>
+		</summary>
+	</private>
+	<externalmessage xsi:type="ASCIIDelimitedFormat" type="ASCIIDelimitedFormat" version="7.0.1-SNAPSHOT" rulename="InvoiceIn" formattype="ASCIIDelimitedFormat" id="483816dd-66e1-41b2-8f5a-9bd09ad63b2e" >
+		<standard>ASCII Delimited</standard>
+		<version>1.0</version>
+		<asciidelimitedfields id="a79b152b-60ac-4c59-897b-9103ee688357">
+			<batchmode>true</batchmode>
+			<delimiter><![CDATA[,]]></delimiter>
+			<contains-header>true</contains-header>
+			<contains-trailer>false</contains-trailer>
+			<headerfields>
+				<field xsi:type="ASCIIDelimitedFieldType">
+					<name>ClientID</name>
+					<datatype>String</datatype>
+					<required>true</required>
+				</field>
+				<field xsi:type="ASCIIDelimitedFieldType">
+					<name>InvoiceDate</name>
+					<datatype>DateTime</datatype>
+					<required>true</required>
+					<dateformat>yyyyMMdd-HH:mm:ss.SSS</dateformat>
+				</field>
+			</headerfields>
+			<datafields>
+				<field xsi:type="ASCIIDelimitedSectionType">
+					<name>Records</name>
+					<datatype>Section</datatype>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>-1</maxoccurs>
+					<fields>
+						<field xsi:type="ASCIIDelimitedFieldType">
+							<name>ItemID</name>
+							<datatype>String</datatype>
+							<required>true</required>
+						</field>
+						<field xsi:type="ASCIIDelimitedFieldType">
+							<name>Qty</name>
+							<datatype>Integer</datatype>
+							<required>true</required>
+						</field>
+						<field xsi:type="ASCIIDelimitedFieldType">
+							<name>Price</name>
+							<datatype>Double</datatype>
+							<required>true</required>
+						</field>
+					</fields>
+				</field>
+			</datafields>
+			<trailerfields>
+			</trailerfields>
+		</asciidelimitedfields>
+		<validationrules name="Default" type="FieldsValidationRules" id="e45182b5-142a-4f70-9a9d-552ad0706ada">
+			<hdrvalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</hdrvalidationrules>
+			<datavalidationrules>
+				<fieldvalidations>
+					<fieldvalidation>
+						<name>E1</name>
+						<fieldname>Records.Qty</fieldname>
+						<formula><![CDATA[$value > 10]]></formula>
+						<severity>error</severity>
+						<cascade>true</cascade>
+						<error-code>EC1</error-code>
+						<actionmessage><![CDATA["Invalid Qty '" + $value + "'. It should be greater than 10."]]></actionmessage>
+					</fieldvalidation>
+				</fieldvalidations>
+			</datavalidationrules>
+			<tlrvalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</tlrvalidationrules>
+		</validationrules>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.external.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar asciirt.jar"/>
+							<property name="Data Source" value=""/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</externalmessage>
+	<restserver name="ServerNode" type="RESTServer" id="a7600aec-ff9e-426f-8d1c-7afd36be3e5a">
+		<version>1.0</version>
+		<application-info>
+			<host>http://localhost:8180</host>
+		</application-info>
+		<handler-info>
+		</handler-info>
+		<access-tags default="">
+			<access-tag></access-tag>
+		</access-tags>
+		<service-registry-info>
+			<services-manager-node>Services Manager</services-manager-node>
+			<service-registry-name></service-registry-name>
+		</service-registry-info>
+		<service name="Service">
+			<path>/Service</path>
+			<deprecated>false</deprecated>
+			<excluded>false</excluded>
+			<operation name="GetCurrencyCode">
+				<path>/Opr</path>
+				<deprecated>false</deprecated>
+				<excluded>false</excluded>
+				<method>GET</method>
+				<messageFlow>GetCurrencyCode1</messageFlow>
+				<parameter name="code">
+					<binding-type>uri</binding-type>
+					<required>true</required>
+					<allow-derived-types>false</allow-derived-types>
+					<repeat>false</repeat>
+					<designer-type>String</designer-type>
+					<ignoreadditionalfields>false</ignoreadditionalfields>
+				</parameter>
+				<response-parameter name="OK">
+					<response-code>200</response-code>
+					<description>OK</description>
+					<repeat>false</repeat>
+					<required>false</required>
+					<allow-derived-types>false</allow-derived-types>
+					<ignoreadditionalfields>false</ignoreadditionalfields>
+				</response-parameter>
+			</operation>
+		</service>
+	</restserver>
+	<restclient name="ClientNode" type="RESTClient" id="b32505cd-f4f6-405f-8231-f16fb247aa92">
+		<version>1.0</version>
+		<application-info>
+			<host>http://localhost:8180</host>
+		</application-info>
+		<handler-info>
+		</handler-info>
+		<connection-info>
+		</connection-info>
+		<service-registry-info>
+			<services-manager-node>Services Manager</services-manager-node>
+			<service-registry-name></service-registry-name>
+		</service-registry-info>
+		<service name="Service">
+			<path>/Servicepath</path>
+			<deprecated>false</deprecated>
+			<excluded>false</excluded>
+			<operation name="Operation">
+				<path>/Oprpath</path>
+				<deprecated>false</deprecated>
+				<excluded>false</excluded>
+				<method>GET</method>
+				<content-type>application/json</content-type>
+				<non-blocking>false</non-blocking>
+				<parameter name="RequestParam">
+					<binding-type>uri</binding-type>
+					<required>false</required>
+					<allow-derived-types>false</allow-derived-types>
+					<repeat>false</repeat>
+					<designer-type>String</designer-type>
+				</parameter>
+				<response-parameter name="Continue">
+					<response-code>100</response-code>
+					<description>Continue</description>
+					<repeat>false</repeat>
+					<required>false</required>
+					<allow-derived-types>false</allow-derived-types>
+					<designer-type>String</designer-type>
+				</response-parameter>
+			</operation>
+		</service>
+		<elementproperties>
+			<propertymap>
+			</propertymap>
+		</elementproperties>
+	</restclient>
+	<elementproperties>
+		<propertymap>
+			<property name="CARTRIDGE_INFO">
+				<value>
+					<propertymap type="com.tplus.transform.design.CartridgeInfo">
+					</propertymap>
+				</value>
+			</property>
+			<property name="DOCUMENT_PROPERTIES">
+				<value>
+					<propertymap>
+						<property name="Author" value="Bala"/>
+						<property name="Creation Time" value="Mon May 16 12:36:21 IST 2005"/>
+						<property name="Designer Build" value="3077"/>
+						<property name="Last Author" value="abhishek.gautam"/>
+						<property name="Last Save Time" value="Mon May 22 11:40:31 IST 2023"/>
+						<property name="Revision Number" value="206"/>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.cpp.bindings">
+				<value>
+					<propertymap type="com.tplus.transform.design.codegen.DefaultLanguageMapping">
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.cpp.settings">
+				<value>
+					<propertymap>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.bindings">
+				<value>
+					<propertymap type="com.tplus.transform.design.codegen.DefaultLanguageMapping">
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.general">
+				<value>
+					<propertymap>
+						<property name="additionalClasspath" value=""/>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.options">
+				<value>
+					<propertymap type="com.tplus.transform.design.codegen.java.JavaCodeGeneratorOptions">
+						<property name="WebSphere.VARIANT.Liberty Profile" value="false"/>
+						<property name="WebSphere.VARIANT.WebSphere Full Profile" value="false"/>
+						<property name="isEJB" value="true"/>
+						<property name="isGenerateALSB" value="false"/>
+						<property name="isGenerateEAR" value="false"/>
+						<property name="isGenerateJNDILinks" value="true"/>
+						<property name="isJBoss" value="true"/>
+						<property name="isLocal" value="true"/>
+						<property name="isOSGI" value="true"/>
+						<property name="isRemote" value="true"/>
+						<property name="isVolante" value="true"/>
+						<property name="isWAR" value="false"/>
+						<property name="isWLEVS" value="false"/>
+						<property name="isWebLogic" value="true"/>
+						<property name="isWebSphere" value="true"/>
+						<property name="isWildFly" value="false"/>
+						<property name="osgi-options">
+							<value>
+								<propertymap>
+									<property name="exclude-locked-cartridge-jars" value="false"/>
+									<property name="exclude-thirdparty-dependency" value="false"/>
+									<property name="exclude-volante-dependencies" value="false"/>
+									<property name="include-dependencies" value="false"/>
+									<property name="include-test-dependencies" value="false"/>
+								</propertymap>
+							</value>
+						</property>
+						<property name="resource-references">
+							<value>
+								<propertylist>
+								</propertylist>
+							</value>
+						</property>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.properties">
+				<value>
+					<propertymap type="com.tplus.transform.design.PropertiesDef">
+						<property name="Max Class Length" value="150"/>
+						<property name="Java Package Name" value="com.transform.cartridge.%c"/>
+					</propertymap>
+				</value>
+			</property>
+		</propertymap>
+	</elementproperties>
+</cartridge>
+

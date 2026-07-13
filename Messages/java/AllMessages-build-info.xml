@@ -1,0 +1,153 @@
+<cartridge-build-info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" platform="Java/EJB" compilerVersion="8" designer-build="3076">
+	<propertymap>
+		<property name="assembly">
+			<value>
+				<propertylist>
+					<value>
+						<propertymap type="com.tplus.transform.design.AssemblyInfo">
+							<property name="artifactId" value="cartridge-AllMessages"/>
+							<property name="groupId" value="com.volantetech.volante.cartridge"/>
+							<property name="locked" value="false"/>
+							<property name="name" value="D:/projects/TestCart/Messages/java/AllMessages.jar"/>
+							<property name="type" value="assembly"/>
+							<property name="version" value="1.0"/>
+						</propertymap>
+					</value>
+				</propertylist>
+			</value>
+		</property>
+		<property name="DEPENDENCY">
+			<value>
+				<propertylist>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="volante-ascii-delimited"/>
+							<property name="groupId" value="com.volantetech.volante"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/asciirt.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="7.0.1-SNAPSHOT"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="commons-codec"/>
+							<property name="groupId" value="commons-codec"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/http/apache-client/commons-codec-1.15.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="1.15"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="commons-logging"/>
+							<property name="groupId" value="commons-logging"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/birt/commons-logging-1.2.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="1.2"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="fluent-hc"/>
+							<property name="groupId" value="org.apache.httpcomponents"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/http/apache-client/fluent-hc-4.5.14.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="4.5.14"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="httpclient"/>
+							<property name="groupId" value="org.apache.httpcomponents"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/http/apache-client/httpclient-4.5.14.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="4.5.14"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="httpclient-cache"/>
+							<property name="groupId" value="org.apache.httpcomponents"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/http/apache-client/httpclient-cache-4.5.14.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="4.5.14"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="httpclient-win"/>
+							<property name="groupId" value="org.apache.httpcomponents"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/http/apache-client/httpclient-win-4.5.14.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="4.5.14"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="httpcore"/>
+							<property name="groupId" value="org.apache.httpcomponents"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/http/apache-client/httpcore-4.4.16.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="4.4.16"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="httpmime"/>
+							<property name="groupId" value="org.apache.httpcomponents"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/http/apache-client/httpmime-4.5.14.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="4.5.14"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="commons-fileupload"/>
+							<property name="groupId" value="commons-fileupload"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/rest/commons-fileupload-1.5.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="1.5"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="volante-core"/>
+							<property name="groupId" value="com.volantetech.volante"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/transformrt.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="7.0.1-SNAPSHOT"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="volante-rest"/>
+							<property name="groupId" value="com.volantetech.volante"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/volante-restrt.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="7.0.1-SNAPSHOT"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="encoder"/>
+							<property name="groupId" value="org.owasp.encoder"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/rest/encoder-1.2.3.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="1.2.3"/>
+						</propertymap>
+					</value>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="volante-utils"/>
+							<property name="groupId" value="com.volantetech.volante"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/generalutils.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="7.0.1-SNAPSHOT"/>
+						</propertymap>
+					</value>
+				</propertylist>
+			</value>
+		</property>
+	</propertymap>
+</cartridge-build-info>
+

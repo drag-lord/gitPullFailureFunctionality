@@ -1,0 +1,10 @@
+@echo off
+set LIB=D:\designeroncloud\backend\designer-home\lib\runtime
+set PLUGIN_DEPEND_LIB_JARS=%LIB%\jetty\jetty.jar
+set REDIST=D:\designeroncloud\backend\designer-home\redist\cpp\lib\vc2010\Release
+copy "%REDIST%\jexecute64.exe"
+copy "%REDIST%\jtransformrt64.dll"
+copy "%REDIST%\transformrt64.dll"
+set CLASSPATH=.;%LIB%\simplert.jar;%LIB%\transformrt.jar;%LIB%\resourcemanager.jar;%LIB%\generalutils.jar;D:\projects\TestCart\Messages\java\AllMessages.jar;D:\designeroncloud\backend\designer-home\lib\runtime\asciirt.jar;D:\designeroncloud\backend\designer-home\lib\runtime\http\apache-client\commons-codec-1.15.jar;D:\designeroncloud\backend\designer-home\lib\runtime\birt\commons-logging-1.2.jar;D:\designeroncloud\backend\designer-home\lib\runtime\http\apache-client\fluent-hc-4.5.14.jar;D:\designeroncloud\backend\designer-home\lib\runtime\http\apache-client\httpclient-4.5.14.jar;D:\designeroncloud\backend\designer-home\lib\runtime\http\apache-client\httpclient-cache-4.5.14.jar;D:\designeroncloud\backend\designer-home\lib\runtime\http\apache-client\httpclient-win-4.5.14.jar;D:\designeroncloud\backend\designer-home\lib\runtime\http\apache-client\httpcore-4.4.16.jar;D:\designeroncloud\backend\designer-home\lib\runtime\http\apache-client\httpmime-4.5.14.jar;D:\designeroncloud\backend\designer-home\lib\runtime\rest\commons-fileupload-1.5.jar;D:\designeroncloud\backend\designer-home\lib\runtime\transformrt.jar;D:\designeroncloud\backend\designer-home\lib\runtime\volante-restrt.jar;D:\designeroncloud\backend\designer-home\lib\runtime\rest\encoder-1.2.3.jar;D:\designeroncloud\backend\designer-home\lib\runtime\generalutils.jar;%LIB%\..\ext\hsqldb.jar;%PLUGIN_DEPEND_LIB_JARS%;
+set JVM=C:\Program Files\jdk-11.0.2\bin\server\jvm.dll
+jexecute64.exe %*

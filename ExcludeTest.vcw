@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<workspace name="ExcludeTest" type="Cartridge">
+	<selected-element root="D:/projects/TestCart/ExcludeTest.car">ExcludeTest/Address/Default</selected-element>
+	<cartridgefilename>D:/projects/TestCart/ExcludeTest.car</cartridgefilename>
+	<additionalTestClasspaths>
+	</additionalTestClasspaths>
+	<additional-properties>
+		<propertymap>
+		</propertymap>
+	</additional-properties>
+</workspace>

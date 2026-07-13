@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cartridge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="5.2.1" name="ImportCartridge" type="Cartridge">
+	<version>1.0</version>
+	<private>
+		<summary>
+		</summary>
+	</private>
+	<elementproperties>
+		<propertymap>
+			<property name="DOCUMENT_PROPERTIES">
+				<value>
+					<propertymap>
+						<property name="Client Id" value="poornimadevi@volante.com"/>
+						<property name="Creation Time" value="Mon Jan 09 14:58:47 IST 2017"/>
+						<property name="Last Save Time" value="Mon Jan 09 04:28:50 EST 2017"/>
+						<property name="Author" value="admin"/>
+						<property name="Last Author" value="admin"/>
+						<property name="Designer Build" value="1629"/>
+						<property name="Revision Number" value="3"/>
+						<property name="Title" value="ImportCartridge"/>
+					</propertymap>
+				</value>
+			</property>
+			<property name="CARTRIDGE_INFO">
+				<value>
+					<propertymap type="com.tplus.transform.design.CartridgeInfo">
+						<property name="GeneratedFiles">
+							<value>
+								<propertymap>
+								</propertymap>
+							</value>
+						</property>
+						<property name="cartridgefilename" value="D:\RESTFinalRelease\TestSuite\Preparing\TestSuite\TestSuite\Preparing_Updating\ExcludeNodes\TestCart\ImportCartridge\ImportCartridge.car"/>
+					</propertymap>
+				</value>
+			</property>
+		</propertymap>
+	</elementproperties>
+	<workspace>
+		<selected-element root="D:\RESTFinalRelease\TestSuite\Preparing\TestSuite\TestSuite\Preparing_Updating\ExcludeNodes\TestCart\ImportCartridge\ImportCartridge.car">ImportCartridge</selected-element>
+	</workspace>
+</cartridge>
+

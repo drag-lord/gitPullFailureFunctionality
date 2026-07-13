@@ -1,0 +1,2033 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cartridge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="7.1.0-SNAPSHOT" name="ExcludeTest" type="Cartridge" id="b94e3aaa-29bb-4c95-a467-1ff17630666e">
+	<description><![CDATA[This cartridge illustrates mapping from external to internal message.
+
+To run,
+
+1) Select the Mapping 'InvoiceAscDelToInvoiceNO' in Simulator.
+2) Open a sample file from the 'sample' directory (under the cartridge directory), in the 'Input' text area.
+3) Click 'Submit'.
+
+The consolidated output will be displayed in the Output pane.
+]]></description>
+	<version>1.0</version>
+	<read-only>false</read-only>
+	<private>
+		<summary>
+			<service name="Address" version="1.0" type="Internal Message">
+			</service>
+			<service name="EmployeeIM" version="1.0" type="Internal Message">
+			</service>
+			<service name="InvoiceOut" version="1.0" type="External Message">
+			</service>
+			<service name="MixedFormat" version="1.0" type="External Message">
+			</service>
+			<service name="AddressToInvoiceOut" version="1.0" type="Mapping">
+			</service>
+			<service name="InvoiceInToEmployeeIM" version="1.0" type="Mapping">
+			</service>
+			<service name="CurrencyDetails" version="1.0" type="Internal Message">
+			</service>
+			<service name="CurrencyDetailsPM" version="1.0" type="Persistence Manager">
+			</service>
+			<service name="GetCurrencyCode" version="1.0" type="Message Flow">
+			</service>
+			<service name="PutCurrency" version="1.0" type="Message Flow">
+			</service>
+			<service name="GetCurrencyCodes" version="1.0" type="Message Flow">
+			</service>
+			<service name="RESTClientActivityFlow" version="1.0" type="Message Flow">
+			</service>
+			<service name="RestServer" version="1.0" type="RESTServer">
+			</service>
+			<service name="ClientCurrencyDetails" version="1.0" type="RESTClient">
+			</service>
+			<service name="newinternalMsg" version="1.0" type="Internal Message">
+			</service>
+			<function name="min"/>
+			<function name="checkSymbolClass"/>
+			<function name="checkSymbolCode"/>
+			<function name="mapToAddress"/>
+			<function name="NativeStaticFun"/>
+		</summary>
+	</private>
+	<references type="References">
+		<reference>
+			<type>Cartridge</type>
+			<relative-path>Messages/AllMessages.car</relative-path>
+			<path-with-macro>${cartridge.home}/Messages/AllMessages.car</path-with-macro>
+			<absolute-path>D:/projects/TestCart/Messages/AllMessages.car</absolute-path>
+		</reference>
+	</references>
+	<internalmessage name="Address" type="InternalMessage" id="39cb5c59-1548-4f4b-89d3-6eafc43dafc0">
+		<version>1.0</version>
+		<normalizedformat id="0e192526-ace0-4475-8957-b66880691ded">
+			<xpath-namespaces>
+				<namespace value="http://www.w3.org/2005/xpath-functions" prefix="fn"/>
+				<namespace value="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+				<namespace value="java:com.tplus.transform.runtime.swift.SwiftXPathFunctions" prefix="swift"/>
+			</xpath-namespaces>
+			<fields>
+				<field xsi:type="InternalMessageFieldType">
+					<name>Name</name>
+					<type>String</type>
+					<notnull>true</notnull>
+					<length>-1</length>
+				</field>
+				<field xsi:type="InternalMessageSectionType">
+					<name>AddressElem</name>
+					<type>Section</type>
+					<minoccurs>1</minoccurs>
+					<maxoccurs>1</maxoccurs>
+					<fields>
+						<field xsi:type="InternalMessageFieldType">
+							<name>StreetName</name>
+							<type>String</type>
+							<notnull>true</notnull>
+							<length>0</length>
+						</field>
+						<field xsi:type="InternalMessageFieldType">
+							<name>Addr1</name>
+							<type>String</type>
+							<notnull>true</notnull>
+							<length>0</length>
+						</field>
+						<field xsi:type="InternalMessageFieldType">
+							<name>Addr2</name>
+							<type>String</type>
+							<notnull>true</notnull>
+							<length>0</length>
+						</field>
+						<field xsi:type="InternalMessageFieldType">
+							<name>CityCountryZip</name>
+							<type>String</type>
+							<notnull>true</notnull>
+							<length>0</length>
+						</field>
+					</fields>
+				</field>
+			</fields>
+		</normalizedformat>
+		<validationrules name="Default" type="ValidationRules" id="14fba835-bf72-4dc2-b0f5-a4c90de23d52">
+		</validationrules>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.internal.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate Wrapper Bean" value=""/>
+							<property name="Bean Class Name Strategy" value=""/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</internalmessage>
+	<internalmessage name="EmployeeIM" type="InternalMessage" id="808894c6-7397-448b-8e3c-7d14d7ed60df">
+		<version>1.0</version>
+		<normalizedformat id="436ceb40-9d1e-47ea-a278-1295dcea7d9c">
+			<xpath-namespaces>
+				<namespace value="http://www.w3.org/2005/xpath-functions" prefix="fn"/>
+				<namespace value="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+				<namespace value="java:com.tplus.transform.runtime.swift.SwiftXPathFunctions" prefix="swift"/>
+			</xpath-namespaces>
+			<fields>
+				<field xsi:type="InternalMessageFieldType">
+					<name>EmployeeNumber</name>
+					<type>String</type>
+					<notnull>true</notnull>
+					<length>-1</length>
+				</field>
+				<field xsi:type="InternalMessageSectionType">
+					<name>Address</name>
+					<type>Section</type>
+					<minoccurs>1</minoccurs>
+					<maxoccurs>1</maxoccurs>
+					<fields>
+						<field xsi:type="InternalMessageFieldType">
+							<name>StreetName</name>
+							<type>String</type>
+							<notnull>true</notnull>
+							<length>-1</length>
+						</field>
+						<field xsi:type="InternalMessageFieldType">
+							<name>Addr1</name>
+							<type>String</type>
+							<notnull>true</notnull>
+							<length>-1</length>
+						</field>
+						<field xsi:type="InternalMessageFieldType">
+							<name>Addr2</name>
+							<type>String</type>
+							<notnull>true</notnull>
+							<length>-1</length>
+						</field>
+						<field xsi:type="InternalMessageFieldType">
+							<name>City</name>
+							<type>String</type>
+							<notnull>true</notnull>
+							<length>-1</length>
+						</field>
+						<field xsi:type="InternalMessageFieldType">
+							<name>Country</name>
+							<type>String</type>
+							<notnull>true</notnull>
+							<length>-1</length>
+						</field>
+						<field xsi:type="InternalMessageFieldType">
+							<name>Zip</name>
+							<type>String</type>
+							<notnull>true</notnull>
+							<length>-1</length>
+						</field>
+					</fields>
+				</field>
+			</fields>
+		</normalizedformat>
+		<validationrules name="Default" type="ValidationRules" id="77bf7eef-7d9f-458b-b475-eabf6b693656">
+		</validationrules>
+		<processing name="Process" type="BusinessProcessingRule" id="a1e3402f-8c32-4191-99d1-b1f51162329c">
+			<additionalparameters id="048bd40b-77ab-4894-a903-ee8b0a417bfe">
+				<xpath-namespaces>
+					<namespace value="http://www.w3.org/2005/xpath-functions" prefix="fn"/>
+					<namespace value="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+					<namespace value="java:com.tplus.transform.runtime.swift.SwiftXPathFunctions" prefix="swift"/>
+				</xpath-namespaces>
+				<fields>
+				</fields>
+			</additionalparameters>
+		</processing>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.internal.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate Wrapper Bean" value=""/>
+							<property name="Bean Class Name Strategy" value=""/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</internalmessage>
+	<externalmessage xsi:type="ASCIIDelimitedFormat" type="ASCIIDelimitedFormat" version="7.1.0-SNAPSHOT" rulename="InvoiceOut" formattype="ASCIIDelimitedFormat" id="9cad80a4-ce47-4ec1-9c5f-472123b6789f" >
+		<standard>ASCII Delimited</standard>
+		<version>1.0</version>
+		<asciidelimitedfields id="6cfc7233-4971-4978-a70a-163211f98c85">
+			<batchmode>true</batchmode>
+			<delimiter><![CDATA[,]]></delimiter>
+			<contains-header>true</contains-header>
+			<contains-trailer>false</contains-trailer>
+			<headerfields>
+				<field xsi:type="ASCIIDelimitedFieldType">
+					<name>ClientID</name>
+					<datatype>String</datatype>
+					<required>true</required>
+				</field>
+				<field xsi:type="ASCIIDelimitedFieldType">
+					<name>InvoiceDate</name>
+					<datatype>DateTime</datatype>
+					<required>true</required>
+					<dateformat>yyyyMMdd-HH:mm:ss.SSS</dateformat>
+				</field>
+			</headerfields>
+			<datafields>
+				<field xsi:type="ASCIIDelimitedSectionType">
+					<name>Records</name>
+					<datatype>Section</datatype>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>-1</maxoccurs>
+					<fields>
+						<field xsi:type="ASCIIDelimitedFieldType">
+							<name>ItemID</name>
+							<datatype>String</datatype>
+							<required>true</required>
+						</field>
+						<field xsi:type="ASCIIDelimitedFieldType">
+							<name>Qty</name>
+							<datatype>Integer</datatype>
+							<required>true</required>
+						</field>
+						<field xsi:type="ASCIIDelimitedFieldType">
+							<name>Price</name>
+							<datatype>Double</datatype>
+							<required>true</required>
+						</field>
+						<field xsi:type="ASCIIDelimitedFieldType">
+							<name>Cost</name>
+							<datatype>Double</datatype>
+							<required>true</required>
+						</field>
+					</fields>
+				</field>
+			</datafields>
+			<trailerfields>
+			</trailerfields>
+		</asciidelimitedfields>
+		<validationrules name="Default" type="FieldsValidationRules" id="264b26c2-1d2e-40b5-9d8b-bfc88f2ca500">
+			<hdrvalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</hdrvalidationrules>
+			<datavalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</datavalidationrules>
+			<tlrvalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</tlrvalidationrules>
+		</validationrules>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.external.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar asciirt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate Wrapper Bean" value=""/>
+							<property name="Bean Class Name Strategy" value=""/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</externalmessage>
+	<externalmessage xsi:type="UniversalFormat" type="UniversalFormat" version="7.1.0-SNAPSHOT" rulename="MixedFormat" formattype="UniversalFormat" id="c0aedd1c-86d4-40e5-877a-644bcafbda32" >
+		<standard>Universal</standard>
+		<version>1.0</version>
+		<Universalfields id="db0474d0-4ee4-4b6d-b732-49bfda32944d">
+			<delimiters>
+				<named-delimiters>
+				</named-delimiters>
+				<header-delimiter ignoretrailingfields="false" />
+				<data-delimiter ignoretrailingfields="false" />
+				<trailer-delimiter ignoretrailingfields="false" />
+				<record-delimiter ignoretrailingfields="false" />
+				<field-delimiter value="" quotechar="" releasechar="" quote-option="Default"/>
+			</delimiters>
+			<defaultencoding>
+				<default>ASCII</default>
+				<defaultfieldtype>Fixed Length</defaultfieldtype>
+				<binaryencoding endian="Big Endian"/>
+				<zoneddecimalencoding>
+					<charset>ASCII</charset>
+				</zoneddecimalencoding>
+				<asciistringoption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciistringoption>
+				<asciicharoption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciicharoption>
+				<asciiintegeroption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<sign>optional</sign>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciiintegeroption>
+				<asciilongoption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<sign>optional</sign>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciilongoption>
+				<asciidateoption>
+					<justification>Left</justification>
+				</asciidateoption>
+				<asciifloatoption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<decimalpointoption>Dot</decimalpointoption>
+					<sign>optional</sign>
+				</asciifloatoption>
+				<asciidoubleoption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<decimalpointoption>Dot</decimalpointoption>
+					<sign>optional</sign>
+				</asciidoubleoption>
+				<asciibooleanoption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<truevalue>1</truevalue>
+					<falsevalue>0</falsevalue>
+				</asciibooleanoption>
+				<asciidateonlyoption>
+					<justification>Left</justification>
+				</asciidateonlyoption>
+				<asciitimeonlyoption>
+					<justification>Left</justification>
+				</asciitimeonlyoption>
+				<asciibigintegeroption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<sign>optional</sign>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciibigintegeroption>
+				<asciibigdecimaloption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<decimalpointoption>Dot</decimalpointoption>
+					<sign>optional</sign>
+				</asciibigdecimaloption>
+				<asciiscaleddecimaloption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<decimalpointoption>Dot</decimalpointoption>
+					<sign>optional</sign>
+				</asciiscaleddecimaloption>
+				<asciibinaryoption>
+					<format>Hex</format>
+					<justification>Left</justification>
+				</asciibinaryoption>
+			</defaultencoding>
+			<headerfields>
+			</headerfields>
+			<datafields>
+				<field xsi:type="UniversalSectionType">
+					<name>PurchaseOrder</name>
+					<datatype>Section</datatype>
+					<minoccurs>1</minoccurs>
+					<maxoccurs>10</maxoccurs>
+					<occurence>discriminated</occurence>
+					<section-type type="sequence"/>
+					<discriminator>
+						<in><![CDATA[]]></in>
+					</discriminator>
+					<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+					<tag value="PO"/>
+					<fields>
+						<field xsi:type="UniversalFieldType">
+							<name>OrderDate</name>
+							<datatype>DateTime</datatype>
+							<required>true</required>
+							<dateformat>yyyy-MM-dd</dateformat>
+							<length type="fixed">
+								<value>10</value>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>FILLER</name>
+							<enabled>false</enabled>
+							<datatype>String</datatype>
+							<required>true</required>
+							<filler>true</filler>
+							<length type="delimited">
+								<field-delimiter value="\r\n" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalSectionType">
+							<name>ShipTo</name>
+							<datatype>Section</datatype>
+							<minoccurs>1</minoccurs>
+							<maxoccurs>1</maxoccurs>
+							<occurence>fixed</occurence>
+							<section-type type="sequence"/>
+							<delimiter value="\r\n" ignoretrailingfields="false" />
+							<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							<fields>
+								<field xsi:type="UniversalFieldType">
+									<name>Country</name>
+									<datatype>String</datatype>
+									<required>true</required>
+									<length type="fixed">
+										<value>10</value>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>Name</name>
+									<datatype>String</datatype>
+									<required>true</required>
+									<length type="fixed">
+										<value>20</value>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>Street</name>
+									<datatype>String</datatype>
+									<required>true</required>
+									<length type="fixed">
+										<value>20</value>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>City</name>
+									<datatype>String</datatype>
+									<required>true</required>
+									<length type="fixed">
+										<value>15</value>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>State</name>
+									<datatype>String</datatype>
+									<required>true</required>
+									<length type="fixed">
+										<value>2</value>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>Zip</name>
+									<datatype>String</datatype>
+									<required>true</required>
+									<length type="fixed">
+										<value>6</value>
+									</length>
+									<encoding>ASCII</encoding>
+									<asciistringoption>
+										<justification>Right</justification>
+									</asciistringoption>
+								</field>
+							</fields>
+						</field>
+						<field xsi:type="UniversalSectionType">
+							<name>BillTo</name>
+							<datatype>Section</datatype>
+							<minoccurs>1</minoccurs>
+							<maxoccurs>1</maxoccurs>
+							<occurence>fixed</occurence>
+							<section-type type="sequence"/>
+							<delimiter value="\r\n" ignoretrailingfields="false" />
+							<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							<fields>
+								<field xsi:type="UniversalFieldType">
+									<name>Country</name>
+									<datatype>String</datatype>
+									<required>true</required>
+									<length type="fixed">
+										<value>10</value>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>Name</name>
+									<datatype>String</datatype>
+									<required>true</required>
+									<length type="fixed">
+										<value>20</value>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>Street</name>
+									<datatype>String</datatype>
+									<required>true</required>
+									<length type="fixed">
+										<value>20</value>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>City</name>
+									<datatype>String</datatype>
+									<required>true</required>
+									<length type="fixed">
+										<value>15</value>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>State</name>
+									<datatype>String</datatype>
+									<required>true</required>
+									<length type="fixed">
+										<value>2</value>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>Zip</name>
+									<datatype>String</datatype>
+									<required>true</required>
+									<length type="fixed">
+										<value>6</value>
+									</length>
+									<encoding>ASCII</encoding>
+									<asciistringoption>
+										<justification>Right</justification>
+									</asciistringoption>
+								</field>
+							</fields>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>Comment</name>
+							<datatype>String</datatype>
+							<required>true</required>
+							<length type="delimited">
+								<field-delimiter value="\r\n" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalSectionType">
+							<name>Items</name>
+							<datatype>Section</datatype>
+							<minoccurs>1</minoccurs>
+							<maxoccurs>1</maxoccurs>
+							<occurence>fixed</occurence>
+							<section-type type="sequence"/>
+							<delimiter value="\r\n" ignoretrailingfields="false" />
+							<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							<tag value="ITEMS,"/>
+							<fields>
+								<field xsi:type="UniversalSectionType">
+									<name>Item</name>
+									<datatype>Section</datatype>
+									<minoccurs>0</minoccurs>
+									<maxoccurs>-1</maxoccurs>
+									<occurence>discriminated</occurence>
+									<section-type type="sequence"/>
+									<discriminator>
+										<in><![CDATA[]]></in>
+									</discriminator>
+									<delimiter value="," ignoretrailingfields="true" />
+									<field-delimiter value="|" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									<tag value="ITEM"/>
+									<fields>
+										<field xsi:type="UniversalFieldType">
+											<name>PartNum</name>
+											<datatype>String</datatype>
+											<required>true</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+										<field xsi:type="UniversalFieldType">
+											<name>ProductName</name>
+											<datatype>String</datatype>
+											<required>true</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+										<field xsi:type="UniversalFieldType">
+											<name>Quantity</name>
+											<datatype>Integer</datatype>
+											<required>true</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+										<field xsi:type="UniversalFieldType">
+											<name>USPrice</name>
+											<datatype>Double</datatype>
+											<required>true</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+											<asciidoubleoption>
+												<exprep>false</exprep>
+											</asciidoubleoption>
+										</field>
+										<field xsi:type="UniversalFieldType">
+											<name>Comment</name>
+											<datatype>String</datatype>
+											<required>false</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+										<field xsi:type="UniversalFieldType">
+											<name>ShipDate</name>
+											<datatype>DateTime</datatype>
+											<required>false</required>
+											<dateformat>yyyy-MM-dd</dateformat>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+									</fields>
+								</field>
+							</fields>
+						</field>
+					</fields>
+				</field>
+				<field xsi:type="UniversalFieldType">
+					<name>CommentPO</name>
+					<datatype>String</datatype>
+					<required>false</required>
+					<length type="delimited">
+						<field-delimiter value="\r\n" quotechar="Default" releasechar="Default" quote-option="Default"/>
+					</length>
+					<encoding>ASCII</encoding>
+				</field>
+			</datafields>
+			<trailerfields>
+			</trailerfields>
+		</Universalfields>
+		<validationrules name="Default" type="FieldsValidationRules" id="b2a11ef1-1352-476a-8cb7-5acf5845ab47">
+			<hdrvalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</hdrvalidationrules>
+			<datavalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</datavalidationrules>
+			<tlrvalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</tlrvalidationrules>
+		</validationrules>
+		<folder name="Function Definitions" type="FunctionDefFolder" id="1e3831f5-0210-421d-aed5-ad4e1b01501d">
+			<FormulaFunctionDef name="min" type="FormulaFunctionDef" id="9be0aedb-6716-4208-ac45-b600bbdddff7">
+				<description>min of value</description>
+				<Category>User Defined</Category>
+				<parameterfields>
+					<parameterfield>
+						<name>v1</name>
+						<type>Any</type>
+					</parameterfield>
+					<parameterfield>
+						<name>v2</name>
+						<type>Any</type>
+					</parameterfield>
+				</parameterfields>
+				<ReturnType>Any</ReturnType>
+				<Code><![CDATA[return v1 < v2 ? v1 : v2;]]></Code>
+				<function-type>Formula</function-type>
+			</FormulaFunctionDef>
+			<elementproperties>
+				<propertymap>
+				</propertymap>
+			</elementproperties>
+		</folder>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.cpp.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+						</propertymap>
+					</value>
+				</property>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.external.asc"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar universalrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate Wrapper Bean" value=""/>
+							<property name="Bean Class Name Strategy" value=""/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</externalmessage>
+	<messageflow name="MessageInAndNOOutTestFlow" type="MessageFlow" id="0530be65-1a66-46d3-9a68-62c9f40849f5">
+		<version>1.0</version>
+		<transaction>Required</transaction>
+		<variables id="aa41e7c1-9352-415e-abf8-d4dbbbe747b2">
+			<fields>
+				<field>
+					<name>RawIn</name>
+					<type>Binary</type>
+					<notnull>false</notnull>
+					<variabletype>INPUT</variabletype>
+				</field>
+				<field>
+					<name>InvoiceInObj</name>
+					<type>DataObject</type>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>1</maxoccurs>
+					<variabletype>LOCAL</variabletype>
+					<message>InvoiceOut</message>
+					<fields>
+					</fields>
+				</field>
+				<field>
+					<name>TransformExceptionObj</name>
+					<type>DataObject</type>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>1</maxoccurs>
+					<variabletype>LOCAL</variabletype>
+					<message>TransformException</message>
+					<fields>
+					</fields>
+				</field>
+				<field>
+					<name>InvoiceNOObj</name>
+					<type>DataObject</type>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>1</maxoccurs>
+					<variabletype>OUTPUT</variabletype>
+					<message>InvoiceNO</message>
+					<fields>
+					</fields>
+				</field>
+				<field>
+					<name>ExceptionMessage</name>
+					<type>Binary</type>
+					<notnull>false</notnull>
+					<variabletype>OUTPUT</variabletype>
+				</field>
+			</fields>
+		</variables>
+		<additional-properties>
+			<property name="excluded" value="true"/>
+			<property name="main-flow" value="false"/>
+			<property name="remotable" value="false"/>
+			<property name="vrpc-protocol" value="REST"/>
+		</additional-properties>
+		<flowelement name="Start1" uid="a320bcf3-7ca7-496b-aa46-95eccc9e7f7e" type="Start" xsi:type="Start" >
+			<label>Start</label>
+			<visual>
+				<position x="135" y="38"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Stop1" uid="cc9b8896-bc8d-4e8e-b2c6-3446a8523002" type="Stop" xsi:type="Stop" >
+			<label>Stop</label>
+			<visual>
+				<position x="135" y="395"/>
+				<line-color>#008000</line-color>
+				<text-color>#000000</text-color>
+				<fill-color>#F0F0FF</fill-color>
+			</visual>
+		</flowelement>
+		<flowelement name="Sequence1" uid="27af6adb-bb4a-46d7-81d9-ae05b02e1a88" type="Sequence" xsi:type="Sequence" >
+			<label>Handle Input</label>
+			<messageflow name="" type="MessageFlow">
+				<flowelement name="Transform2" uid="e91461eb-a78b-41a1-8ac5-2cec77572c6a" type="Mapping" xsi:type="Mapping" >
+					<label>InvoiceIn to InvoiceNO</label>
+					<in>InvoiceInObj</in>
+					<out>InvoiceNOObj</out>
+					<messagemapping>InvoiceInToInvoiceNO</messagemapping>
+					<create-destination>true</create-destination>
+					<visual>
+						<position x="62" y="204"/>
+						<line-color>#FFA200</line-color>
+						<fill-color>#FFFFCC</fill-color>
+					</visual>
+				</flowelement>
+				<flowelement name="Parse2" uid="189687e3-a2d8-4f62-8c66-86b91974f854" type="Parse" xsi:type="Parse" >
+					<label>Parse InvoiceIn</label>
+					<in>RawIn</in>
+					<out>InvoiceInObj</out>
+					<message>InvoiceIn</message>
+					<cascade-exceptions>false</cascade-exceptions>
+					<visual>
+						<position x="63" y="50"/>
+					</visual>
+				</flowelement>
+				<flowelement name="Validate1" uid="5cb797a5-4e1e-49f9-8b5b-76c4577f7dc4" type="Validate" xsi:type="Validate" >
+					<label>Validate InvoiceIn</label>
+					<in>InvoiceInObj</in>
+					<message>InvoiceIn</message>
+					<cascade-exceptions>false</cascade-exceptions>
+					<visual>
+						<position x="63" y="127"/>
+					</visual>
+				</flowelement>
+				<link type="Default" xsi:type="Default" uid="71b3c007-4098-4524-af2c-146463fae897">
+					<outputport uid="189687e3-a2d8-4f62-8c66-86b91974f854" portindex="1"/>
+					<inputport uid="5cb797a5-4e1e-49f9-8b5b-76c4577f7dc4" portindex="0"/>
+					<edge-type>DIRECT</edge-type>
+					<note>
+						<value>InvoiceInObj</value>
+						<visual>
+							<location x="-3" y="-3"/>
+						</visual>
+					</note>
+				</link>
+				<link type="Default" xsi:type="Default" uid="c2ac1715-8a34-48f9-8473-5ee35371fa36">
+					<outputport uid="5cb797a5-4e1e-49f9-8b5b-76c4577f7dc4" portindex="1"/>
+					<inputport uid="e91461eb-a78b-41a1-8ac5-2cec77572c6a" portindex="0"/>
+					<edge-type>DIRECT</edge-type>
+					<note>
+						<value>InvoiceInObj</value>
+						<visual>
+							<location x="-2" y="-3"/>
+						</visual>
+					</note>
+				</link>
+				<visual>
+					<bounds x="24" y="18" width="81" height="225"/>
+				</visual>
+			</messageflow>
+			<visual>
+				<position x="133" y="212"/>
+			</visual>
+			<property name="showbody" value="true"/>
+		</flowelement>
+		<flowelement name="Serialize1" uid="59f0df0a-9dbb-4365-926e-575e509abbff" type="Serialize" xsi:type="Serialize" >
+			<label>Serialize TransformException</label>
+			<in>TransformExceptionObj</in>
+			<out>ExceptionMessage</out>
+			<message>TransformException</message>
+			<cascade-exceptions>false</cascade-exceptions>
+			<visual>
+				<position x="296" y="264"/>
+			</visual>
+		</flowelement>
+		<link type="Default" xsi:type="Default" uid="f2b6109d-2ab6-4992-86d4-efaf245324b1">
+			<outputport uid="a320bcf3-7ca7-496b-aa46-95eccc9e7f7e" portindex="0"/>
+			<inputport uid="27af6adb-bb4a-46d7-81d9-ae05b02e1a88" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+			<note>
+				<value>RawIn</value>
+				<visual>
+					<location x="20" y="-1"/>
+				</visual>
+			</note>
+		</link>
+		<link type="Default" xsi:type="Default" uid="c22777f9-f20b-49ef-94af-aefdd7bb0c99">
+			<outputport uid="27af6adb-bb4a-46d7-81d9-ae05b02e1a88" portindex="1"/>
+			<inputport uid="cc9b8896-bc8d-4e8e-b2c6-3446a8523002" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+			<note>
+				<value>InvoiceNOObj</value>
+				<visual>
+					<location x="-1" y="-4"/>
+				</visual>
+			</note>
+		</link>
+		<link type="Default" xsi:type="Default" uid="cae065b4-c376-49d2-a6af-95cb5ac9f2d2">
+			<outputport uid="59f0df0a-9dbb-4365-926e-575e509abbff" portindex="1"/>
+			<inputport uid="cc9b8896-bc8d-4e8e-b2c6-3446a8523002" portindex="0"/>
+			<edge-type>ELBOW</edge-type>
+			<note>
+				<value>ExceptionMessage</value>
+				<visual>
+					<location x="-1" y="-8"/>
+				</visual>
+			</note>
+		</link>
+		<link type="Exception" xsi:type="Exception" uid="f378bca7-1142-4941-a3d8-bcd747063e2e">
+			<message>TransformException</message>
+			<out>TransformExceptionObj</out>
+			<cascade-exceptions>false</cascade-exceptions>
+			<outputport uid="27af6adb-bb4a-46d7-81d9-ae05b02e1a88" portindex="2"/>
+			<inputport uid="59f0df0a-9dbb-4365-926e-575e509abbff" portindex="0"/>
+			<edge-type>ELBOW</edge-type>
+			<note>
+				<value>TransformExceptionObj</value>
+				<visual>
+					<location x="61" y="-10"/>
+				</visual>
+			</note>
+		</link>
+		<visual>
+			<bounds x="71" y="25" width="292" height="384"/>
+		</visual>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.flow"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate MDB" value="false"/>
+						</propertymap>
+					</value>
+				</property>
+				<property name="codegen.cpp.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</messageflow>
+	<folder name="Function Definitions" type="FunctionDefFolder" id="60154c62-1ada-4f54-9510-688481e4d7d2">
+		<FormulaFunctionDef name="checkSymbolClass" type="FormulaFunctionDef" id="b3ffa7a4-e6b7-485c-9cb0-9e6ba40b6001">
+			<description></description>
+			<Category>User Defined</Category>
+			<parameterfields>
+				<parameterfield>
+					<name>symbol</name>
+					<type>String</type>
+				</parameterfield>
+			</parameterfields>
+			<ReturnType>Boolean</ReturnType>
+			<Code><![CDATA[]]></Code>
+			<function-type>Native Class</function-type>
+			<native-class-ref>usrfunctions.TestNativeClass</native-class-ref>
+		</FormulaFunctionDef>
+		<FormulaFunctionDef name="checkSymbolCode" type="FormulaFunctionDef" id="8b527f5b-e0cf-4a92-8cc5-9f1ba3b7800f">
+			<description></description>
+			<Category>User Defined</Category>
+			<parameterfields>
+				<parameterfield>
+					<name>symbol</name>
+					<type>String</type>
+				</parameterfield>
+			</parameterfields>
+			<ReturnType>Boolean</ReturnType>
+			<Code><![CDATA[]]></Code>
+			<function-type>Native Code</function-type>
+			<native-code>	
+       boolean toRet = false;
+		if(symbol.trim().equals("AAAA") || symbol.trim().equals("BBBB")){
+			toRet = true;
+		}
+       return toRet;
+</native-code>
+		</FormulaFunctionDef>
+		<FormulaFunctionDef name="mapToAddress" type="FormulaFunctionDef" id="1ebf5697-934f-41e1-a193-2ac95e7f8a79">
+			<description></description>
+			<Category>User Defined</Category>
+			<parameterfields>
+				<parameterfield>
+					<name>SrcAddr1</name>
+					<type>Section</type>
+					<allow-any>true</allow-any>
+					<allow-untyped>true</allow-untyped>
+					<message>EmployeeIM</message>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>-1</maxoccurs>
+				</parameterfield>
+				<parameterfield>
+					<name>DestAddr1</name>
+					<type>Section</type>
+					<allow-any>true</allow-any>
+					<output>true</output>
+					<message>Address</message>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>-1</maxoccurs>
+				</parameterfield>
+			</parameterfields>
+			<ReturnType>Void</ReturnType>
+			<Code><![CDATA[]]></Code>
+			<function-type>Mapping</function-type>
+			<source-format id="b8e2309f-e627-4ef1-9247-a7773d7bc50b">
+				<xpath-namespaces>
+					<namespace value="http://www.w3.org/2005/xpath-functions" prefix="fn"/>
+					<namespace value="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+					<namespace value="java:com.tplus.transform.runtime.swift.SwiftXPathFunctions" prefix="swift"/>
+				</xpath-namespaces>
+				<fields>
+					<field>
+						<name>SrcAddr1</name>
+						<type>Section</type>
+						<minoccurs>0</minoccurs>
+						<maxoccurs>-1</maxoccurs>
+						<message>EmployeeIM</message>
+						<fields>
+						</fields>
+					</field>
+				</fields>
+			</source-format>
+			<destination-format id="fa858a44-8f96-46fb-90a4-9df2446d2ce0">
+				<xpath-namespaces>
+					<namespace value="http://www.w3.org/2005/xpath-functions" prefix="fn"/>
+					<namespace value="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+					<namespace value="java:com.tplus.transform.runtime.swift.SwiftXPathFunctions" prefix="swift"/>
+				</xpath-namespaces>
+				<fields>
+					<field>
+						<name>DestAddr1</name>
+						<type>Section</type>
+						<minoccurs>0</minoccurs>
+						<maxoccurs>-1</maxoccurs>
+						<message>Address</message>
+						<fields>
+						</fields>
+					</field>
+				</fields>
+			</destination-format>
+			<mappingrules id="f5d16fdd-2cad-43bb-8553-42f0c6525810">
+				<mappings>
+				</mappings>
+			</mappingrules>
+		</FormulaFunctionDef>
+		<FormulaFunctionDef name="NativeStaticFun" type="FormulaFunctionDef" id="19b2283b-3c30-4567-aabb-74b45fde8ba5">
+			<description></description>
+			<Category>User Defined</Category>
+			<parameterfields>
+				<parameterfield>
+					<name>param</name>
+					<type>String</type>
+				</parameterfield>
+			</parameterfields>
+			<ReturnType>String</ReturnType>
+			<Code><![CDATA[]]></Code>
+			<function-type>Native Static Method</function-type>
+			<native-method-ref>#default.TestingStaticNativeFunctions::passString(java.lang.String) java.lang.String</native-method-ref>
+			<native-source>functions\TestStaticFunction.jar</native-source>
+		</FormulaFunctionDef>
+		<elementproperties>
+			<propertymap>
+			</propertymap>
+		</elementproperties>
+	</folder>
+	<file type="DirectoryFileElement" name="functions" id="b5187649-3a89-403f-8e78-7198eb437179"/>
+	<resources type="Resources" id="d1a2516b-b339-4f0e-8c07-f9b7b7466a7a">
+		<Locales active="">
+		</Locales>
+		<resourcefields>
+			<resourcefield>
+				<name>FLD3_VALUE</name>
+				<type>String</type>
+				<value><![CDATA[10]]></value>
+			</resourcefield>
+		</resourcefields>
+	</resources>
+	<messagemapping rulename="AddressToInvoiceOut" type="MessageMapping" id="276c88cb-f617-428a-be2d-48da69089e3a">
+		<source>Address</source>
+		<destination>InvoiceOut</destination>
+		<mappingrules id="ac992b03-e65a-4756-b80c-bfbc1d9d4660">
+			<mappings>
+				<mapping type="one2one">
+					<source-field>AddressElem.StreetName</source-field>
+					<destination-field>ClientID</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA[if(IsNotNull(AddressElem.Addr2))
+	Set(ParseDate(AddressElem.Addr2, "%Y-%M-%DT%h:%m:%s"));]]></source-field>
+					<destination-field>InvoiceDate</destination-field>
+				</mapping>
+			</mappings>
+		</mappingrules>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.mapping"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</messagemapping>
+	<messagemapping rulename="InvoiceInToEmployeeIM" type="MessageMapping" id="3b53ef30-2dec-4784-b941-ccf34ddeba5d">
+		<source>InvoiceIn</source>
+		<destination>EmployeeIM</destination>
+		<mappingrules id="fd3d5d08-9601-4afb-af1e-2983b77a377a">
+			<mappings>
+			</mappings>
+		</mappingrules>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.mapping"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</messagemapping>
+	<messageflow name="UnivFlow" type="MessageFlow" id="7910e249-a5e1-4f27-baa5-646e2ca41961">
+		<version>1.0</version>
+		<transaction>NotRequired</transaction>
+		<variables id="095f99e9-b910-48b3-9ef2-e30336cf2322">
+			<xpath-namespaces>
+				<namespace value="http://www.w3.org/2005/xpath-functions" prefix="fn"/>
+				<namespace value="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+				<namespace value="java:com.tplus.transform.runtime.swift.SwiftXPathFunctions" prefix="swift"/>
+			</xpath-namespaces>
+			<fields>
+				<field>
+					<name>In</name>
+					<type>Binary</type>
+					<notnull>true</notnull>
+					<variabletype>INPUT</variabletype>
+				</field>
+				<field>
+					<name>ParseObj</name>
+					<type>DataObject</type>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>1</maxoccurs>
+					<variabletype>LOCAL</variabletype>
+					<message>MixedFormat</message>
+					<fields>
+					</fields>
+				</field>
+				<field>
+					<name>FinalOut</name>
+					<type>Binary</type>
+					<notnull>true</notnull>
+					<variabletype>OUTPUT</variabletype>
+				</field>
+			</fields>
+		</variables>
+		<additional-properties>
+			<property name="excluded" value="true"/>
+			<property name="main-flow" value="false"/>
+			<property name="remotable" value="false"/>
+			<property name="vrpc-protocol" value="REST"/>
+		</additional-properties>
+		<flowelement name="Start1" uid="4d7761f9-4456-416c-8e01-43b1135af0a7" type="Start" xsi:type="Start" >
+			<label>Start</label>
+			<visual>
+				<position x="253" y="39"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Parse1" uid="c469404d-eff8-4675-827e-65d7e3aaa9b2" type="Parse" xsi:type="Parse" >
+			<label>Parse</label>
+			<description><![CDATA[]]></description>
+			<in>In</in>
+			<out>ParseObj</out>
+			<message>MixedFormat</message>
+			<cascade-exceptions>false</cascade-exceptions>
+			<visual>
+				<position x="255" y="99"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Validate1" uid="dbd979be-ed90-4051-975d-fed807f7a0c7" type="Validate" xsi:type="Validate" >
+			<label>Validate</label>
+			<description><![CDATA[]]></description>
+			<in>ParseObj</in>
+			<message>MixedFormat</message>
+			<cascade-exceptions>false</cascade-exceptions>
+			<visual>
+				<position x="253" y="172"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Serialize1" uid="21f8ffc5-f7d6-4bdc-be0b-d88354f97ed1" type="Serialize" xsi:type="Serialize" >
+			<label>Serialize</label>
+			<description><![CDATA[]]></description>
+			<in>ParseObj</in>
+			<out>FinalOut</out>
+			<message>MixedFormat</message>
+			<cascade-exceptions>false</cascade-exceptions>
+			<visual>
+				<position x="252" y="243"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Stop1" uid="0ac88fb1-f630-4836-8cf0-23db67dcac94" type="Stop" xsi:type="Stop" >
+			<label>Stop</label>
+			<visual>
+				<position x="252" y="305"/>
+			</visual>
+		</flowelement>
+		<link type="Default" xsi:type="Default" uid="c09cec2f-a1f2-4ba1-88da-07a85337a448">
+			<outputport uid="4d7761f9-4456-416c-8e01-43b1135af0a7" portindex="0"/>
+			<inputport uid="c469404d-eff8-4675-827e-65d7e3aaa9b2" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<link type="Default" xsi:type="Default" uid="96f54575-0dce-42b5-a01e-945ce674882a">
+			<outputport uid="c469404d-eff8-4675-827e-65d7e3aaa9b2" portindex="1"/>
+			<inputport uid="dbd979be-ed90-4051-975d-fed807f7a0c7" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<link type="Default" xsi:type="Default" uid="b9095a72-aad1-4cde-848c-96e891116b60">
+			<outputport uid="dbd979be-ed90-4051-975d-fed807f7a0c7" portindex="1"/>
+			<inputport uid="21f8ffc5-f7d6-4bdc-be0b-d88354f97ed1" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<link type="Default" xsi:type="Default" uid="47253194-3069-4160-a40a-4accf428da9d">
+			<outputport uid="21f8ffc5-f7d6-4bdc-be0b-d88354f97ed1" portindex="1"/>
+			<inputport uid="0ac88fb1-f630-4836-8cf0-23db67dcac94" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<visual>
+			<bounds x="218" y="26" width="70" height="293"/>
+		</visual>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.flow"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate MDB" value="false"/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</messageflow>
+	<internalmessage name="CurrencyDetails" type="InternalMessage" id="2d389bbc-45c9-474b-a031-24ac37fb17b6">
+		<version>1.0</version>
+		<normalizedformat id="7626b574-2092-4f42-863f-0e140a30b2ab">
+			<fields>
+				<field xsi:type="InternalMessageFieldType">
+					<name>CURRENCY CODE</name>
+					<type>String</type>
+					<description><![CDATA[ISO currency code]]></description>
+					<notnull>true</notnull>
+					<length>3</length>
+					<platforminfo>
+						<platform name="Database">
+							<property name="name" value="CURRENCY_CODE"/>
+							<property name="length" value="3"/>
+							<property name="decimallength" value="0"/>
+							<property name="sqltype" value="12"/>
+							<property name="required" value="true"/>
+							<property name="primarykey" value="true"/>
+						</platform>
+					</platforminfo>
+				</field>
+				<field xsi:type="InternalMessageFieldType">
+					<name>CURRENCY NAME</name>
+					<type>String</type>
+					<description><![CDATA[ISO currency name (part 1)]]></description>
+					<notnull>true</notnull>
+					<length>70</length>
+				</field>
+				<field xsi:type="InternalMessageFieldType">
+					<name>FRACTIONAL DIGIT</name>
+					<type>Integer</type>
+					<description><![CDATA[Fractional digit for the currency (the number of decimals to be used)]]></description>
+					<notnull>true</notnull>
+				</field>
+				<field xsi:type="InternalMessageFieldType">
+					<name>COUNTRY CODE</name>
+					<type>String</type>
+					<description><![CDATA[ISO country code]]></description>
+					<notnull>false</notnull>
+					<length>2</length>
+				</field>
+				<field xsi:type="InternalMessageFieldType">
+					<name>COUNTRY NAME</name>
+					<type>String</type>
+					<description><![CDATA[Country name (part 1)]]></description>
+					<notnull>false</notnull>
+					<length>70</length>
+				</field>
+			</fields>
+		</normalizedformat>
+		<validationrules name="Default" type="ValidationRules" id="eb2be1f3-e069-42fb-8755-b29c2ed799d5">
+		</validationrules>
+		<PersistenceManager type="PersistenceManager" id="e2a1c153-d8cd-4d99-b202-419e143e5d76">
+			<databaseformat id="8c315945-f219-4d05-a714-a7dac94824fa">
+				<table>CurrencyDetails</table>
+				<fields>
+					<field xsi:type="DatabaseColumn">
+						<name>CurrencyDetails_PK</name>
+						<type>String</type>
+						<description><![CDATA[Auto generated primary key]]></description>
+						<sqltype>VARCHAR</sqltype>
+						<length>36</length>
+						<primarykey>true</primarykey>
+						<autogenerate>true</autogenerate>
+					</field>
+					<field xsi:type="DatabaseColumn">
+						<name>CURRENCY_CODE</name>
+						<type>String</type>
+						<description><![CDATA[ISO currency code]]></description>
+						<sqltype>VARCHAR</sqltype>
+						<length>3</length>
+					</field>
+					<field xsi:type="DatabaseColumn">
+						<name>CURRENCY_NAME</name>
+						<type>String</type>
+						<description><![CDATA[ISO currency name (part 1)]]></description>
+						<sqltype>VARCHAR</sqltype>
+						<length>70</length>
+					</field>
+					<field xsi:type="DatabaseColumn">
+						<name>FRACTIONAL_DIGIT</name>
+						<type>Integer</type>
+						<description><![CDATA[Fractional digit for the currency (the number of decimals to be used)]]></description>
+						<sqltype>INTEGER</sqltype>
+						<length>10</length>
+					</field>
+					<field xsi:type="DatabaseColumn">
+						<name>COUNTRY_CODE</name>
+						<type>String</type>
+						<description><![CDATA[ISO country code]]></description>
+						<sqltype>VARCHAR</sqltype>
+						<notnull>false</notnull>
+						<length>2</length>
+					</field>
+					<field xsi:type="DatabaseColumn">
+						<name>COUNTRY_NAME</name>
+						<type>String</type>
+						<description><![CDATA[Country name (part 1)]]></description>
+						<sqltype>VARCHAR</sqltype>
+						<notnull>false</notnull>
+						<length>70</length>
+					</field>
+				</fields>
+			</databaseformat>
+			<queries id="3a98c15c-8150-4d54-b63c-c73b0c220f85">
+			</queries>
+			<mappingrules id="ec3ce588-7469-4380-a4f8-72a5aea6f774">
+				<mappings>
+					<mapping type="one2one">
+						<source-field>CURRENCY CODE</source-field>
+						<destination-field>CURRENCY_CODE</destination-field>
+					</mapping>
+					<mapping type="one2one">
+						<source-field>CURRENCY NAME</source-field>
+						<destination-field>CURRENCY_NAME</destination-field>
+					</mapping>
+					<mapping type="one2one">
+						<source-field>FRACTIONAL DIGIT</source-field>
+						<destination-field>FRACTIONAL_DIGIT</destination-field>
+					</mapping>
+					<mapping type="one2one">
+						<source-field>COUNTRY CODE</source-field>
+						<destination-field>COUNTRY_CODE</destination-field>
+					</mapping>
+					<mapping type="one2one">
+						<source-field>COUNTRY NAME</source-field>
+						<destination-field>COUNTRY_NAME</destination-field>
+					</mapping>
+				</mappings>
+			</mappingrules>
+			<elementproperties>
+				<propertymap>
+					<property name="codegen.java.properties">
+						<value>
+							<propertymap type="com.tplus.transform.design.PropertiesDef">
+								<property name="Data Source" value="transformdb"/>
+								<property name="Unique Key Table" value="UniqueKeyGenTable"/>
+							</propertymap>
+						</value>
+					</property>
+				</propertymap>
+			</elementproperties>
+		</PersistenceManager>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.internal.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate Wrapper Bean" value=""/>
+							<property name="Bean Class Name Strategy" value=""/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</internalmessage>
+	<messageflow name="GetCurrencyCode" type="MessageFlow" id="4b4dba2d-fd57-43a1-bfbb-356d49ba4ab0">
+		<version>1.0</version>
+		<transaction>NotRequired</transaction>
+		<additional-properties>
+			<property name="main-flow" value="false"/>
+			<property name="remotable" value="false"/>
+			<property name="vrpc-protocol" value="REST"/>
+		</additional-properties>
+		<flowelement name="Start1" uid="65348d76-7c5b-4577-9780-eb567280cee3" type="Start" xsi:type="Start" >
+			<label>Start</label>
+			<description><![CDATA[]]></description>
+			<visual>
+				<position x="525" y="38"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Stop1" uid="a3137eb7-0ebc-49bc-950a-6384996fd2e8" type="Stop" xsi:type="Stop" >
+			<label>Stop</label>
+			<description><![CDATA[]]></description>
+			<visual>
+				<position x="525" y="161"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Custom1" uid="48e796c8-09e2-4826-a84d-d08169b8064c" type="Custom" xsi:type="Custom" >
+			<label>Custom</label>
+			<description><![CDATA[]]></description>
+			<code><![CDATA[info("GetCurrencyCode")]]></code>
+			<visual>
+				<position x="524" y="99"/>
+			</visual>
+		</flowelement>
+		<link type="Default" xsi:type="Default" uid="29b3ac9a-d931-4190-845e-876c82c04e31">
+			<outputport uid="65348d76-7c5b-4577-9780-eb567280cee3" portindex="0"/>
+			<inputport uid="48e796c8-09e2-4826-a84d-d08169b8064c" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<link type="Default" xsi:type="Default" uid="a085e5d5-c736-4470-a7d6-4bb77803ac2a">
+			<outputport uid="48e796c8-09e2-4826-a84d-d08169b8064c" portindex="1"/>
+			<inputport uid="a3137eb7-0ebc-49bc-950a-6384996fd2e8" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<visual>
+			<bounds x="490" y="25" width="70" height="150"/>
+		</visual>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.flow.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate MDB" value="false"/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</messageflow>
+	<messageflow name="PutCurrency" type="MessageFlow" id="6ecfc9ea-2a2b-47ca-a4b6-f35cbfc8616a">
+		<version>1.0</version>
+		<transaction>NotRequired</transaction>
+		<additional-properties>
+			<property name="main-flow" value="false"/>
+			<property name="remotable" value="false"/>
+			<property name="vrpc-protocol" value="REST"/>
+		</additional-properties>
+		<flowelement name="Start1" uid="65348d76-7c5b-4577-9780-eb567280cee3" type="Start" xsi:type="Start" >
+			<label>Start</label>
+			<description><![CDATA[]]></description>
+			<visual>
+				<position x="525" y="38"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Stop1" uid="a3137eb7-0ebc-49bc-950a-6384996fd2e8" type="Stop" xsi:type="Stop" >
+			<label>Stop</label>
+			<description><![CDATA[]]></description>
+			<visual>
+				<position x="525" y="161"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Custom1" uid="48e796c8-09e2-4826-a84d-d08169b8064c" type="Custom" xsi:type="Custom" >
+			<label>Custom</label>
+			<description><![CDATA[]]></description>
+			<code><![CDATA[info("PutCurrency")]]></code>
+			<visual>
+				<position x="526" y="98"/>
+			</visual>
+		</flowelement>
+		<link type="Default" xsi:type="Default" uid="ca139920-ec24-4bcd-8a0e-b507a776e45f">
+			<outputport uid="65348d76-7c5b-4577-9780-eb567280cee3" portindex="0"/>
+			<inputport uid="48e796c8-09e2-4826-a84d-d08169b8064c" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<link type="Default" xsi:type="Default" uid="26c18209-9273-4c4c-b337-76b463448411">
+			<outputport uid="48e796c8-09e2-4826-a84d-d08169b8064c" portindex="1"/>
+			<inputport uid="a3137eb7-0ebc-49bc-950a-6384996fd2e8" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<visual>
+			<bounds x="490" y="25" width="70" height="150"/>
+		</visual>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.flow.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate MDB" value="false"/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</messageflow>
+	<messageflow name="GetCurrencyCodes" type="MessageFlow" id="e8eeb445-7c15-427f-971e-55d3fdf98ffb">
+		<version>1.0</version>
+		<transaction>NotRequired</transaction>
+		<additional-properties>
+			<property name="main-flow" value="false"/>
+			<property name="remotable" value="false"/>
+			<property name="vrpc-protocol" value="REST"/>
+		</additional-properties>
+		<flowelement name="Start1" uid="65348d76-7c5b-4577-9780-eb567280cee3" type="Start" xsi:type="Start" >
+			<label>Start</label>
+			<description><![CDATA[]]></description>
+			<visual>
+				<position x="525" y="38"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Stop1" uid="a3137eb7-0ebc-49bc-950a-6384996fd2e8" type="Stop" xsi:type="Stop" >
+			<label>Stop</label>
+			<description><![CDATA[]]></description>
+			<visual>
+				<position x="525" y="161"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Custom1" uid="48e796c8-09e2-4826-a84d-d08169b8064c" type="Custom" xsi:type="Custom" >
+			<label>Custom</label>
+			<description><![CDATA[]]></description>
+			<code><![CDATA[info("GetCurrencyCodes")]]></code>
+			<visual>
+				<position x="526" y="98"/>
+			</visual>
+		</flowelement>
+		<link type="Default" xsi:type="Default" uid="eeb257ef-2a4c-4d64-8e6a-b1002b068900">
+			<outputport uid="65348d76-7c5b-4577-9780-eb567280cee3" portindex="0"/>
+			<inputport uid="48e796c8-09e2-4826-a84d-d08169b8064c" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<link type="Default" xsi:type="Default" uid="e14a8720-bf6e-490e-a458-65ffccc35afd">
+			<outputport uid="48e796c8-09e2-4826-a84d-d08169b8064c" portindex="1"/>
+			<inputport uid="a3137eb7-0ebc-49bc-950a-6384996fd2e8" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<visual>
+			<bounds x="490" y="25" width="70" height="150"/>
+		</visual>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.flow.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate MDB" value="false"/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</messageflow>
+	<messageflow name="RESTClientActivityFlow" type="MessageFlow" id="eba62641-2414-4220-b15d-516a35ac9c2e">
+		<version>1.0</version>
+		<transaction>NotRequired</transaction>
+		<variables id="aa148dd0-621d-4ca5-be33-5ea61dbd012c">
+			<xpath-namespaces>
+				<namespace value="http://www.w3.org/2005/xpath-functions" prefix="fn"/>
+				<namespace value="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+				<namespace value="java:com.tplus.transform.runtime.swift.SwiftXPathFunctions" prefix="swift"/>
+			</xpath-namespaces>
+			<fields>
+				<field>
+					<name>StatusCodeVar</name>
+					<type>Integer</type>
+					<notnull>true</notnull>
+					<variabletype>OUTPUT</variabletype>
+				</field>
+				<field>
+					<name>Var200</name>
+					<type>Section</type>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>-1</maxoccurs>
+					<variabletype>OUTPUT</variabletype>
+					<message>CurrencyDetails</message>
+					<fields>
+					</fields>
+				</field>
+				<field>
+					<name>Var404</name>
+					<type>String</type>
+					<notnull>false</notnull>
+					<length>-1</length>
+					<variabletype>OUTPUT</variabletype>
+				</field>
+			</fields>
+		</variables>
+		<additional-properties>
+			<property name="main-flow" value="false"/>
+			<property name="remotable" value="false"/>
+			<property name="vrpc-protocol" value="REST"/>
+		</additional-properties>
+		<flowelement name="Stop1" uid="38c2c3d9-c34f-468b-8611-3975b1259cb2" type="Stop" xsi:type="Stop" >
+			<label>Stop</label>
+			<description><![CDATA[]]></description>
+			<visual>
+				<position x="554" y="203"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Start1" uid="91e7a5a6-bcdd-4d4b-8491-d0e19a665036" type="Start" xsi:type="Start" >
+			<label>Start</label>
+			<description><![CDATA[]]></description>
+			<visual>
+				<position x="550" y="69"/>
+			</visual>
+		</flowelement>
+		<flowelement name="RESTClient1" uid="72e95e46-3ab2-4769-89d0-1c632bfbb0b6" type="RESTClient" xsi:type="RESTClient" >
+			<label>%a %n</label>
+			<description><![CDATA[]]></description>
+			<RestClient>ClientCurrencyDetails</RestClient>
+			<RestService>CurrencyCodes</RestService>
+			<RestOperation>GetCurrencyCodes</RestOperation>
+			<OutputMapping>
+				<Param>
+					<Name>200</Name>
+					<Type>DataObject</Type>
+					<Repeating>true</Repeating>
+					<Required>false</Required>
+					<Message>CurrencyDetails</Message>
+					<Value>Var200</Value>
+				</Param>
+				<Param>
+					<Name>404</Name>
+					<Type>String</Type>
+					<Repeating>false</Repeating>
+					<Required>false</Required>
+					<Value>Var404</Value>
+				</Param>
+				<StatusCode>StatusCodeVar</StatusCode>
+			</OutputMapping>
+			<InputMapping>
+			</InputMapping>
+			<Header-Input>
+			</Header-Input>
+			<Header-Output>
+			</Header-Output>
+			<visual>
+				<position x="544" y="139"/>
+			</visual>
+		</flowelement>
+		<link type="Default" xsi:type="Default" uid="a236c137-6bf6-4d76-9c03-057094479004">
+			<outputport uid="91e7a5a6-bcdd-4d4b-8491-d0e19a665036" portindex="0"/>
+			<inputport uid="72e95e46-3ab2-4769-89d0-1c632bfbb0b6" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<link type="Default" xsi:type="Default" uid="cd4e88b4-5ac5-4e49-ade1-685c58c65fa5">
+			<outputport uid="72e95e46-3ab2-4769-89d0-1c632bfbb0b6" portindex="1"/>
+			<inputport uid="38c2c3d9-c34f-468b-8611-3975b1259cb2" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<visual>
+			<bounds x="505" y="56" width="83" height="161"/>
+		</visual>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.flow.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate MDB" value="false"/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</messageflow>
+	<restserver name="RestServer" type="RESTServer" id="dc0d4be4-e94e-4ab7-93ff-20f0eb8e188d">
+		<version>1.0</version>
+		<application-info>
+			<name>CurrencyDetails</name>
+			<version>1.0</version>
+			<description>Simple REST Server</description>
+			<host>http://localhost:8081</host>
+			<base-path>/rest</base-path>
+		</application-info>
+		<handler-info>
+		</handler-info>
+		<access-tags default="">
+			<access-tag></access-tag>
+		</access-tags>
+		<service-registry-info>
+			<services-manager-node>Services Manager</services-manager-node>
+			<service-registry-name></service-registry-name>
+		</service-registry-info>
+		<service name="CurrencyCodes">
+			<path>/currency</path>
+			<description>Currency details</description>
+			<deprecated>false</deprecated>
+			<excluded>false</excluded>
+			<operation name="GetCurrencyCodes">
+				<description>Get all currency codes</description>
+				<deprecated>false</deprecated>
+				<excluded>true</excluded>
+				<method>GET</method>
+				<messageFlow>GetCurrencyCodes</messageFlow>
+				<response-parameter name="OK">
+					<response-code>200</response-code>
+					<description>OK</description>
+					<repeat>false</repeat>
+					<required>true</required>
+					<allow-derived-types>false</allow-derived-types>
+					<ignoreadditionalfields>false</ignoreadditionalfields>
+				</response-parameter>
+			</operation>
+			<operation name="GetCurrencyCode">
+				<path>/code</path>
+				<description>Get currency code details</description>
+				<deprecated>false</deprecated>
+				<excluded>false</excluded>
+				<method>GET</method>
+				<messageFlow>GetCurrencyCode</messageFlow>
+				<response-parameter name="OK">
+					<response-code>200</response-code>
+					<description>OK</description>
+					<repeat>false</repeat>
+					<required>false</required>
+					<allow-derived-types>false</allow-derived-types>
+					<ignoreadditionalfields>false</ignoreadditionalfields>
+				</response-parameter>
+			</operation>
+			<operation name="PutCurrency">
+				<description>Insert new currency</description>
+				<deprecated>false</deprecated>
+				<excluded>false</excluded>
+				<method>PUT</method>
+				<messageFlow>PutCurrency</messageFlow>
+				<response-parameter name="Created">
+					<response-code>201</response-code>
+					<description>Created</description>
+					<repeat>false</repeat>
+					<required>true</required>
+					<allow-derived-types>false</allow-derived-types>
+					<ignoreadditionalfields>false</ignoreadditionalfields>
+				</response-parameter>
+			</operation>
+		</service>
+	</restserver>
+	<restclient name="ClientCurrencyDetails" type="RESTClient" id="a05e740c-7d12-437f-8897-c20c5d6aa246">
+		<version>1.0</version>
+		<application-info>
+			<name>CurrencyDetails</name>
+			<version>1.0</version>
+			<description>Simple REST Server</description>
+			<host>http://localhost:8180</host>
+			<base-path>/rest</base-path>
+		</application-info>
+		<handler-info>
+		</handler-info>
+		<connection-info>
+		</connection-info>
+		<service-registry-info>
+			<services-manager-node>Services Manager</services-manager-node>
+			<service-registry-name></service-registry-name>
+		</service-registry-info>
+		<service name="CurrencyCodes">
+			<path>/currency</path>
+			<description>Currency details</description>
+			<deprecated>false</deprecated>
+			<excluded>false</excluded>
+			<operation name="GetCurrencyCodes">
+				<description>Get all currency codes</description>
+				<deprecated>false</deprecated>
+				<excluded>false</excluded>
+				<method>GET</method>
+				<content-type>application/json</content-type>
+				<non-blocking>false</non-blocking>
+				<response-parameter name="OK">
+					<response-code>200</response-code>
+					<description>OK</description>
+					<message-name>CurrencyDetails</message-name>
+					<repeat>true</repeat>
+					<required>false</required>
+					<allow-derived-types>false</allow-derived-types>
+					<designer-type>DataObject</designer-type>
+				</response-parameter>
+				<response-parameter name="Not found">
+					<response-code>404</response-code>
+					<description>Not found</description>
+					<repeat>false</repeat>
+					<required>false</required>
+					<allow-derived-types>false</allow-derived-types>
+					<designer-type>String</designer-type>
+				</response-parameter>
+			</operation>
+			<operation name="PutCurrency">
+				<description>Insert new currency</description>
+				<deprecated>false</deprecated>
+				<excluded>false</excluded>
+				<method>PUT</method>
+				<content-type>application/json</content-type>
+				<non-blocking>false</non-blocking>
+				<parameter name="currencyDetails">
+					<binding-name>currencyDetails</binding-name>
+					<binding-type>body</binding-type>
+					<message-name>CurrencyDetails</message-name>
+					<required>true</required>
+					<allow-derived-types>false</allow-derived-types>
+					<repeat>false</repeat>
+					<designer-type>DataObject</designer-type>
+				</parameter>
+				<response-parameter name="OK">
+					<response-code>200</response-code>
+					<description>OK</description>
+					<repeat>false</repeat>
+					<required>false</required>
+					<allow-derived-types>false</allow-derived-types>
+					<designer-type>String</designer-type>
+				</response-parameter>
+			</operation>
+			<operation name="GetCurrencyCode">
+				<path>/{code}</path>
+				<description>Get currency code details</description>
+				<deprecated>false</deprecated>
+				<excluded>false</excluded>
+				<method>GET</method>
+				<content-type>application/json</content-type>
+				<non-blocking>false</non-blocking>
+				<parameter name="code">
+					<binding-name>code</binding-name>
+					<binding-type>uri</binding-type>
+					<required>true</required>
+					<allow-derived-types>false</allow-derived-types>
+					<repeat>false</repeat>
+					<designer-type>String</designer-type>
+				</parameter>
+				<response-parameter name="OK">
+					<response-code>200</response-code>
+					<description>OK</description>
+					<message-name>CurrencyDetails</message-name>
+					<repeat>false</repeat>
+					<required>false</required>
+					<allow-derived-types>false</allow-derived-types>
+					<designer-type>DataObject</designer-type>
+				</response-parameter>
+				<response-parameter name="Not found">
+					<response-code>404</response-code>
+					<description>Not found</description>
+					<repeat>false</repeat>
+					<required>false</required>
+					<allow-derived-types>false</allow-derived-types>
+					<designer-type>String</designer-type>
+				</response-parameter>
+			</operation>
+		</service>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.rest.client.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="commons-codec-1.14.jar commons-codec-1.15.jar commons-fileupload-1.4.jar commons-logging-1.2.jar esapi-2.2.0.0.jar fluent-hc-4.5.10.jar fluent-hc-4.5.14.jar httpclient-4.5.11.jar httpclient-4.5.14.jar httpclient-cache-4.5.11.jar httpclient-cache-4.5.14.jar httpclient-win-4.5.11.jar httpclient-win-4.5.14.jar httpcore-4.4.13.jar httpcore-4.4.16.jar httpmime-4.5.11.jar httpmime-4.5.14.jar transformrt.jar volante-restrt.jar"/>
+							<property name="Data Source" value=""/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</restclient>
+	<internalmessage name="newinternalMsg" type="InternalMessage" id="b11fc0e1-ab34-47be-a345-af1d4566b6a2">
+		<version>1.0</version>
+		<normalizedformat id="a8b3dd25-83ba-4a15-b08d-1bf6ee6fbf00">
+			<xpath-namespaces>
+				<namespace value="http://www.w3.org/2005/xpath-functions" prefix="fn"/>
+				<namespace value="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+				<namespace value="java:com.tplus.transform.runtime.swift.SwiftXPathFunctions" prefix="swift"/>
+			</xpath-namespaces>
+			<formatOptions>
+			<feature-secure-processing>true</feature-secure-processing>
+			</formatOptions>
+			<fields>
+			</fields>
+		</normalizedformat>
+		<validationrules name="Default" type="ValidationRules" id="da3b1bb5-9718-4008-917a-296d1d20b4d3">
+		</validationrules>
+		<elementproperties>
+			<propertymap>
+			</propertymap>
+		</elementproperties>
+	</internalmessage>
+	<elementproperties>
+		<propertymap>
+			<property name="CARTRIDGE_INFO">
+				<value>
+					<propertymap type="com.tplus.transform.design.CartridgeInfo">
+					</propertymap>
+				</value>
+			</property>
+			<property name="DOCUMENT_PROPERTIES">
+				<value>
+					<propertymap>
+						<property name="Author" value="Krishnan"/>
+						<property name="Creation Time" value="Mon Sep 06 14:18:44 IST 2004"/>
+						<property name="Designer Build" value="3223"/>
+						<property name="Last Author" value="abhishek.gautam"/>
+						<property name="Last Save Time" value="Thu Jan 04 15:54:15 IST 2024"/>
+						<property name="LastAuthor" value="Bala"/>
+						<property name="Revision Number" value="362"/>
+					</propertymap>
+				</value>
+			</property>
+			<property name="WebServiceDefs">
+				<value>
+					<propertymap>
+						<property name="webservices">
+							<value>
+								<propertylist>
+								</propertylist>
+							</value>
+						</property>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.bindings">
+				<value>
+					<propertymap type="com.tplus.transform.design.codegen.DefaultLanguageMapping">
+						<property name="usrfunctions.TestNativeClass" value="usrfunctions.TestNativeClass"/>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.general">
+				<value>
+					<propertymap>
+						<property name="additionalClasspath" value=""/>
+						<property name="debugInfo" value="false"/>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.options">
+				<value>
+					<propertymap type="com.tplus.transform.design.codegen.java.JavaCodeGeneratorOptions">
+						<property name="WebSphere.VARIANT.Liberty Profile" value="false"/>
+						<property name="WebSphere.VARIANT.WebSphere Full Profile" value="false"/>
+						<property name="ejb-jndi-prefix" value=""/>
+						<property name="isEJB" value="true"/>
+						<property name="isGenerateALSB" value="false"/>
+						<property name="isGenerateEAR" value="false"/>
+						<property name="isGenerateJNDILinks" value="true"/>
+						<property name="isJBoss" value="true"/>
+						<property name="isLocal" value="true"/>
+						<property name="isOSGI" value="false"/>
+						<property name="isRemote" value="true"/>
+						<property name="isVolante" value="true"/>
+						<property name="isWAR" value="false"/>
+						<property name="isWLEVS" value="false"/>
+						<property name="isWebLogic" value="true"/>
+						<property name="isWebSphere" value="true"/>
+						<property name="isWildFly" value="false"/>
+						<property name="resource-references">
+							<value>
+								<propertylist>
+								</propertylist>
+							</value>
+						</property>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.properties">
+				<value>
+					<propertymap type="com.tplus.transform.design.PropertiesDef">
+						<property name="Java Package Name" value="com.transform.cartridge.%c"/>
+						<property name="Max Class Length" value="150"/>
+					</propertymap>
+				</value>
+			</property>
+			<property name="testsuites">
+				<value>
+					<propertylist>
+					</propertylist>
+				</value>
+			</property>
+		</propertymap>
+	</elementproperties>
+</cartridge>
+

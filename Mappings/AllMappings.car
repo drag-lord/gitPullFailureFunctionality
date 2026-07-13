@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cartridge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="7.0.1-SNAPSHOT" name="AllMappings" type="Cartridge" id="d846554f-d2a6-457f-acec-fad118e4d211">
+	<version>1.0</version>
+	<read-only>false</read-only>
+	<private>
+		<summary>
+			<service name="InvoiceInToInvoiceNO" version="1.0" type="Mapping">
+			</service>
+			<service name="GetCurrencyCode1" version="1.0" type="Message Flow">
+			</service>
+			<service name="InvoiceNO" version="1.0" type="Internal Message">
+			</service>
+		</summary>
+	</private>
+	<references type="References">
+		<reference>
+			<type>Cartridge</type>
+			<relative-path>../Messages/AllMessages.car</relative-path>
+			<absolute-path>D:/projects/TestCart/Messages/AllMessages.car</absolute-path>
+		</reference>
+	</references>
+	<messagemapping rulename="InvoiceInToInvoiceNO" type="MessageMapping" id="a9c27dd5-9791-43f1-82c4-f0bc9d71689c">
+		<source>InvoiceIn</source>
+		<destination>InvoiceNO</destination>
+		<mappingrules id="21499d85-342d-41c7-91f7-63546382b8ca">
+			<mappings>
+				<mapping type="one2one">
+					<source-field>ClientID</source-field>
+					<destination-field>ClientID</destination-field>
+				</mapping>
+				<mapping type="one2one">
+					<source-field>InvoiceDate</source-field>
+					<destination-field>InvoiceDate</destination-field>
+				</mapping>
+				<mapping type="one2one">
+					<source-field>Records.ItemID</source-field>
+					<destination-field>Item.ItemID</destination-field>
+				</mapping>
+				<mapping type="one2one">
+					<source-field>Records.Qty</source-field>
+					<destination-field>Item.Qty</destination-field>
+				</mapping>
+				<mapping type="one2one">
+					<source-field>Records.Price</source-field>
+					<destination-field>Item.Price</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA[Records.Qty * Records.Price]]></source-field>
+					<destination-field>Item.Cost</destination-field>
+				</mapping>
+			</mappings>
+		</mappingrules>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.mapping"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+						</propertymap>
+					</value>
+				</property>
+				<property name="codegen.cpp.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</messagemapping>
+	<messageflow name="GetCurrencyCode1" type="MessageFlow" id="420c4fc7-d70c-479f-b9ae-0c1f938fd53c">
+		<version>1.0</version>
+		<transaction>NotRequired</transaction>
+		<variables id="e9a59f84-ea1e-49f2-afb1-92336cb4beb7">
+			<xpath-namespaces>
+				<namespace value="http://www.w3.org/2005/xpath-functions" prefix="fn"/>
+				<namespace value="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+				<namespace value="java:com.tplus.transform.runtime.swift.SwiftXPathFunctions" prefix="swift"/>
+			</xpath-namespaces>
+			<fields>
+				<field>
+					<name>code</name>
+					<type>String</type>
+					<notnull>true</notnull>
+					<length>-1</length>
+					<variabletype>INPUT</variabletype>
+				</field>
+			</fields>
+		</variables>
+		<additional-properties>
+			<property name="main-flow" value="false"/>
+		</additional-properties>
+		<flowelement name="Start1" uid="65348d76-7c5b-4577-9780-eb567280cee3" type="Start" xsi:type="Start" >
+			<label>Start</label>
+			<description><![CDATA[]]></description>
+			<visual>
+				<position x="525" y="38"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Stop1" uid="a3137eb7-0ebc-49bc-950a-6384996fd2e8" type="Stop" xsi:type="Stop" >
+			<label>Stop</label>
+			<description><![CDATA[]]></description>
+			<visual>
+				<position x="525" y="161"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Custom1" uid="48e796c8-09e2-4826-a84d-d08169b8064c" type="Custom" xsi:type="Custom" >
+			<label>Custom</label>
+			<description><![CDATA[]]></description>
+			<code><![CDATA[info("GetCurrencyCode")]]></code>
+			<visual>
+				<position x="524" y="99"/>
+			</visual>
+		</flowelement>
+		<link type="Default" xsi:type="Default" uid="7746265a-3b92-46fb-a470-587fc6b43c8a">
+			<outputport uid="65348d76-7c5b-4577-9780-eb567280cee3" portindex="0"/>
+			<inputport uid="48e796c8-09e2-4826-a84d-d08169b8064c" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<link type="Default" xsi:type="Default" uid="18eaeeba-4305-4799-b670-4f2ee86de470">
+			<outputport uid="48e796c8-09e2-4826-a84d-d08169b8064c" portindex="1"/>
+			<inputport uid="a3137eb7-0ebc-49bc-950a-6384996fd2e8" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<visual>
+			<bounds x="493" y="25" width="64" height="150"/>
+		</visual>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.flow.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate MDB" value="false"/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</messageflow>
+	<internalmessage name="InvoiceNO" type="InternalMessage" id="963b3d85-cce5-4eb4-8bdc-592db85f9bda">
+		<version>1.0</version>
+		<normalizedformat id="3a058ebf-1fb7-4094-bd17-c58a1e1bc931">
+			<fields>
+				<field xsi:type="InternalMessageFieldType">
+					<name>ClientID</name>
+					<type>String</type>
+					<notnull>true</notnull>
+					<length>100</length>
+				</field>
+				<field xsi:type="InternalMessageFieldType">
+					<name>InvoiceDate</name>
+					<type>DateTime</type>
+					<notnull>true</notnull>
+				</field>
+				<field xsi:type="InternalMessageSectionType">
+					<name>Item</name>
+					<type>Section</type>
+					<minoccurs>1</minoccurs>
+					<maxoccurs>-1</maxoccurs>
+					<fields>
+						<field xsi:type="InternalMessageFieldType">
+							<name>ItemID</name>
+							<type>String</type>
+							<notnull>true</notnull>
+							<length>100</length>
+						</field>
+						<field xsi:type="InternalMessageFieldType">
+							<name>Qty</name>
+							<type>Integer</type>
+							<notnull>true</notnull>
+						</field>
+						<field xsi:type="InternalMessageFieldType">
+							<name>Price</name>
+							<type>Double</type>
+							<notnull>true</notnull>
+						</field>
+						<field xsi:type="InternalMessageFieldType">
+							<name>Cost</name>
+							<type>Double</type>
+							<notnull>true</notnull>
+						</field>
+					</fields>
+				</field>
+			</fields>
+		</normalizedformat>
+		<validationrules name="Default" type="ValidationRules" id="652bdc98-13fe-4ae4-afbb-5e8c81b549d3">
+		</validationrules>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.internal.invoicebt"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+						</propertymap>
+					</value>
+				</property>
+				<property name="codegen.cpp.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</internalmessage>
+	<elementproperties>
+		<propertymap>
+			<property name="CARTRIDGE_INFO">
+				<value>
+					<propertymap type="com.tplus.transform.design.CartridgeInfo">
+					</propertymap>
+				</value>
+			</property>
+			<property name="DOCUMENT_PROPERTIES">
+				<value>
+					<propertymap>
+						<property name="Author" value="Bala"/>
+						<property name="Creation Time" value="Mon May 16 12:36:21 IST 2005"/>
+						<property name="Designer Build" value="3077"/>
+						<property name="Last Author" value="abhishek.gautam"/>
+						<property name="Last Save Time" value="Mon May 22 11:40:31 IST 2023"/>
+						<property name="Revision Number" value="198"/>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.cpp.bindings">
+				<value>
+					<propertymap type="com.tplus.transform.design.codegen.DefaultLanguageMapping">
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.cpp.settings">
+				<value>
+					<propertymap>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.bindings">
+				<value>
+					<propertymap type="com.tplus.transform.design.codegen.DefaultLanguageMapping">
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.general">
+				<value>
+					<propertymap>
+						<property name="additionalClasspath" value=""/>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.options">
+				<value>
+					<propertymap type="com.tplus.transform.design.codegen.java.JavaCodeGeneratorOptions">
+						<property name="WebSphere.VARIANT.Liberty Profile" value="false"/>
+						<property name="WebSphere.VARIANT.WebSphere Full Profile" value="false"/>
+						<property name="isEJB" value="true"/>
+						<property name="isGenerateALSB" value="false"/>
+						<property name="isGenerateEAR" value="false"/>
+						<property name="isGenerateJNDILinks" value="true"/>
+						<property name="isJBoss" value="true"/>
+						<property name="isLocal" value="true"/>
+						<property name="isOSGI" value="true"/>
+						<property name="isRemote" value="true"/>
+						<property name="isVolante" value="true"/>
+						<property name="isWAR" value="false"/>
+						<property name="isWLEVS" value="false"/>
+						<property name="isWebLogic" value="true"/>
+						<property name="isWebSphere" value="true"/>
+						<property name="isWildFly" value="false"/>
+						<property name="osgi-options">
+							<value>
+								<propertymap>
+									<property name="exclude-locked-cartridge-jars" value="false"/>
+									<property name="exclude-thirdparty-dependency" value="false"/>
+									<property name="exclude-volante-dependencies" value="false"/>
+									<property name="include-dependencies" value="false"/>
+									<property name="include-test-dependencies" value="false"/>
+								</propertymap>
+							</value>
+						</property>
+						<property name="resource-references">
+							<value>
+								<propertylist>
+								</propertylist>
+							</value>
+						</property>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.properties">
+				<value>
+					<propertymap type="com.tplus.transform.design.PropertiesDef">
+						<property name="Max Class Length" value="150"/>
+						<property name="Java Package Name" value="com.transform.cartridge.%c"/>
+					</propertymap>
+				</value>
+			</property>
+		</propertymap>
+	</elementproperties>
+</cartridge>
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema>
+    <table name="CurrencyDetails" >
+            <column name="CurrencyDetails_PK" type="VARCHAR" length="36" required="true" primarykey="true" />
+            <column name="CURRENCY_CODE" type="VARCHAR" length="3" required="true" />
+            <column name="CURRENCY_NAME" type="VARCHAR" length="70" required="true" />
+            <column name="FRACTIONAL_DIGIT" type="INTEGER" length="10" required="true" />
+            <column name="COUNTRY_CODE" type="VARCHAR" length="2" required="false" />
+            <column name="COUNTRY_NAME" type="VARCHAR" length="70" required="false" />
+    </table>
+</schema>
+

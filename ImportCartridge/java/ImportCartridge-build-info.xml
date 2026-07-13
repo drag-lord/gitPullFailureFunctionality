@@ -1,0 +1,36 @@
+<cartridge-build-info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" platform="Java/EJB" compilerVersion="8" designer-build="3084">
+	<propertymap>
+		<property name="assembly">
+			<value>
+				<propertylist>
+					<value>
+						<propertymap type="com.tplus.transform.design.AssemblyInfo">
+							<property name="artifactId" value="cartridge-ImportCartridge"/>
+							<property name="groupId" value="com.volantetech.volante.cartridge"/>
+							<property name="locked" value="false"/>
+							<property name="name" value="D:/projects/TestCart/ImportCartridge/java/ImportCartridge.jar"/>
+							<property name="type" value="assembly"/>
+							<property name="version" value="1.0"/>
+						</propertymap>
+					</value>
+				</propertylist>
+			</value>
+		</property>
+		<property name="DEPENDENCY">
+			<value>
+				<propertylist>
+					<value>
+						<propertymap type="com.tplus.transform.design.ModuleInfo">
+							<property name="artifactId" value="volante-utils"/>
+							<property name="groupId" value="com.volantetech.volante"/>
+							<property name="name" value="D:/designeroncloud/backend/designer-home/lib/runtime/generalutils.jar"/>
+							<property name="type" value="DEPENDENCY"/>
+							<property name="version" value="7.0.1-SNAPSHOT"/>
+						</propertymap>
+					</value>
+				</propertylist>
+			</value>
+		</property>
+	</propertymap>
+</cartridge-build-info>
+
