@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<cartridge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="7.1.0-SNAPSHOT" name="ExcludeTest" type="Cartridge" id="b94e3aaa-29bb-4c95-a467-1ff17630666e">
+<cartridge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="7.2.0" name="ExcludeTest" type="Cartridge" id="b94e3aaa-29bb-4c95-a467-1ff17630666e">
 	<description><![CDATA[This cartridge illustrates mapping from external to internal message.
 
 To run,
@@ -69,19 +69,19 @@ The consolidated output will be displayed in the Output pane.
 			</xpath-namespaces>
 			<fields>
 				<field xsi:type="InternalMessageFieldType">
-					<name>Name</name>
+					<name>Nameabc</name>
 					<type>String</type>
 					<notnull>true</notnull>
 					<length>-1</length>
 				</field>
 				<field xsi:type="InternalMessageSectionType">
-					<name>AddressElem</name>
+					<name>AddressElemabc</name>
 					<type>Section</type>
 					<minoccurs>1</minoccurs>
 					<maxoccurs>1</maxoccurs>
 					<fields>
 						<field xsi:type="InternalMessageFieldType">
-							<name>StreetName</name>
+							<name>StreetNameabc</name>
 							<type>String</type>
 							<notnull>true</notnull>
 							<length>0</length>
@@ -99,7 +99,7 @@ The consolidated output will be displayed in the Output pane.
 							<length>0</length>
 						</field>
 						<field xsi:type="InternalMessageFieldType">
-							<name>CityCountryZip</name>
+							<name>CityCountryZipabc</name>
 							<type>String</type>
 							<notnull>true</notnull>
 							<length>0</length>
@@ -137,19 +137,19 @@ The consolidated output will be displayed in the Output pane.
 			</xpath-namespaces>
 			<fields>
 				<field xsi:type="InternalMessageFieldType">
-					<name>EmployeeNumber</name>
+					<name>EmployeeNumberabc</name>
 					<type>String</type>
 					<notnull>true</notnull>
 					<length>-1</length>
 				</field>
 				<field xsi:type="InternalMessageSectionType">
-					<name>Address</name>
+					<name>Addressabc</name>
 					<type>Section</type>
 					<minoccurs>1</minoccurs>
 					<maxoccurs>1</maxoccurs>
 					<fields>
 						<field xsi:type="InternalMessageFieldType">
-							<name>StreetName</name>
+							<name>StreetNameabc</name>
 							<type>String</type>
 							<notnull>true</notnull>
 							<length>-1</length>
@@ -167,19 +167,19 @@ The consolidated output will be displayed in the Output pane.
 							<length>-1</length>
 						</field>
 						<field xsi:type="InternalMessageFieldType">
-							<name>City</name>
+							<name>Cityabc</name>
 							<type>String</type>
 							<notnull>true</notnull>
 							<length>-1</length>
 						</field>
 						<field xsi:type="InternalMessageFieldType">
-							<name>Country</name>
+							<name>Countryabc</name>
 							<type>String</type>
 							<notnull>true</notnull>
 							<length>-1</length>
 						</field>
 						<field xsi:type="InternalMessageFieldType">
-							<name>Zip</name>
+							<name>Zipabc</name>
 							<type>String</type>
 							<notnull>true</notnull>
 							<length>-1</length>
@@ -218,7 +218,7 @@ The consolidated output will be displayed in the Output pane.
 			</propertymap>
 		</elementproperties>
 	</internalmessage>
-	<externalmessage xsi:type="ASCIIDelimitedFormat" type="ASCIIDelimitedFormat" version="7.1.0-SNAPSHOT" rulename="InvoiceOut" formattype="ASCIIDelimitedFormat" id="9cad80a4-ce47-4ec1-9c5f-472123b6789f" >
+	<externalmessage xsi:type="ASCIIDelimitedFormat" type="ASCIIDelimitedFormat" version="7.2.0" rulename="InvoiceOut" formattype="ASCIIDelimitedFormat" id="9cad80a4-ce47-4ec1-9c5f-472abcb6789f" >
 		<standard>ASCII Delimited</standard>
 		<version>1.0</version>
 		<asciidelimitedfields id="6cfc7233-4971-4978-a70a-163211f98c85">
@@ -247,22 +247,22 @@ The consolidated output will be displayed in the Output pane.
 					<maxoccurs>-1</maxoccurs>
 					<fields>
 						<field xsi:type="ASCIIDelimitedFieldType">
-							<name>ItemID</name>
+							<name>ItemIDabc</name>
 							<datatype>String</datatype>
 							<required>true</required>
 						</field>
 						<field xsi:type="ASCIIDelimitedFieldType">
-							<name>Qty</name>
+							<name>Qtyabc</name>
 							<datatype>Integer</datatype>
 							<required>true</required>
 						</field>
 						<field xsi:type="ASCIIDelimitedFieldType">
-							<name>Price</name>
+							<name>Priceabc</name>
 							<datatype>Double</datatype>
 							<required>true</required>
 						</field>
 						<field xsi:type="ASCIIDelimitedFieldType">
-							<name>Cost</name>
+							<name>Costabc</name>
 							<datatype>Double</datatype>
 							<required>true</required>
 						</field>
@@ -303,7 +303,7 @@ The consolidated output will be displayed in the Output pane.
 			</propertymap>
 		</elementproperties>
 	</externalmessage>
-	<externalmessage xsi:type="UniversalFormat" type="UniversalFormat" version="7.1.0-SNAPSHOT" rulename="MixedFormat" formattype="UniversalFormat" id="c0aedd1c-86d4-40e5-877a-644bcafbda32" >
+	<externalmessage xsi:type="UniversalFormat" type="UniversalFormat" version="7.2.0" rulename="MixedFormat" formattype="UniversalFormat" id="c0aedd1c-86d4-40e5-877a-644bcafbda32" >
 		<standard>Universal</standard>
 		<version>1.0</version>
 		<Universalfields id="db0474d0-4ee4-4b6d-b732-49bfda32944d">
@@ -1098,12 +1098,12 @@ The consolidated output will be displayed in the Output pane.
 		<mappingrules id="ac992b03-e65a-4756-b80c-bfbc1d9d4660">
 			<mappings>
 				<mapping type="one2one">
-					<source-field>AddressElem.StreetName</source-field>
+					<source-field>AddressElemabc.StreetNameabc</source-field>
 					<destination-field>ClientID</destination-field>
 				</mapping>
 				<mapping type="formula">
-					<source-field><![CDATA[if(IsNotNull(AddressElem.Addr2))
-	Set(ParseDate(AddressElem.Addr2, "%Y-%M-%DT%h:%m:%s"));]]></source-field>
+					<source-field><![CDATA[if(IsNotNull(AddressElemabc.Addr2))
+	Set(ParseDate(AddressElemabc.Addr2, "%Y-%M-%DT%h:%m:%s"));]]></source-field>
 					<destination-field>InvoiceDate</destination-field>
 				</mapping>
 			</mappings>
@@ -1949,11 +1949,11 @@ The consolidated output will be displayed in the Output pane.
 					<propertymap>
 						<property name="Author" value="Krishnan"/>
 						<property name="Creation Time" value="Mon Sep 06 14:18:44 IST 2004"/>
-						<property name="Designer Build" value="3223"/>
+						<property name="Designer Build" value="2025"/>
 						<property name="Last Author" value="abhishek.gautam"/>
-						<property name="Last Save Time" value="Thu Jan 04 15:54:15 IST 2024"/>
+						<property name="Last Save Time" value="Mon Jul 13 14:22:13 IST 2026"/>
 						<property name="LastAuthor" value="Bala"/>
-						<property name="Revision Number" value="362"/>
+						<property name="Revision Number" value="363"/>
 					</propertymap>
 				</value>
 			</property>
