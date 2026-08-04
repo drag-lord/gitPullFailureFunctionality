@@ -16,7 +16,7 @@
 		<reference>
 			<type>Cartridge</type>
 			<relative-path>../Messages/AllMessages.car</relative-path>
-			<absolute-path>D:/projects/git-pull-failure-project/GitPullFailureFunctionality/GitPullFailureFunctionality/Messages/AllMessages.car</absolute-path>
+			<absolute-path>C:/Users/abhishek.gautam/Documents/gitPullDesignertest/Messages/AllMessages.car</absolute-path>
 		</reference>
 	</references>
 	<messagemapping rulename="InvoiceInToInvoiceNO" type="MessageMapping" id="a9c27dd5-9791-43f1-82c4-f0bc9d71689c">
@@ -26,27 +26,27 @@
 			<mappings>
 				<mapping type="one2one">
 					<source-field>ClientID</source-field>
-					<destination-field>ClientIDdef</destination-field>
+					<destination-field>ClientIDabc</destination-field>
 				</mapping>
 				<mapping type="one2one">
 					<source-field>InvoiceDate</source-field>
-					<destination-field>InvoiceDatedef</destination-field>
+					<destination-field>InvoiceDateabc</destination-field>
 				</mapping>
-				<mapping type="formula">
-					<source-field><![CDATA[Records.ItemIDabc]]></source-field>
-					<destination-field>Itemfed.ItemID</destination-field>
+				<mapping type="one2one">
+					<source-field>Records.ItemIDabc</source-field>
+					<destination-field>Itemabc.ItemID</destination-field>
 				</mapping>
-				<mapping type="formula">
-					<source-field><![CDATA[Records.Qtyabc]]></source-field>
-					<destination-field>Itemfed.Qty</destination-field>
+				<mapping type="one2one">
+					<source-field>Records.Qtyabc</source-field>
+					<destination-field>Itemabc.Qty</destination-field>
 				</mapping>
-				<mapping type="formula">
-					<source-field><![CDATA[Records.Priceabc]]></source-field>
-					<destination-field>Itemfed.Price</destination-field>
+				<mapping type="one2one">
+					<source-field>Records.Priceabc</source-field>
+					<destination-field>Itemabc.Price</destination-field>
 				</mapping>
 				<mapping type="formula">
 					<source-field><![CDATA[Records.Qtyabc * Records.Priceabc]]></source-field>
-					<destination-field>Itemfed.Cost</destination-field>
+					<destination-field>Itemabc.Cost</destination-field>
 				</mapping>
 			</mappings>
 		</mappingrules>
@@ -82,7 +82,7 @@
 			</xpath-namespaces>
 			<fields>
 				<field>
-					<name>codeabc</name>
+					<name>code123</name>
 					<type>String</type>
 					<notnull>true</notnull>
 					<length>-1</length>
@@ -92,6 +92,8 @@
 		</variables>
 		<additional-properties>
 			<property name="main-flow" value="false"/>
+			<property name="remotable" value="false"/>
+			<property name="vrpc-protocol" value="REST"/>
 		</additional-properties>
 		<flowelement name="Start1" uid="65348d76-7c5b-4577-9780-eb567280cee3" type="Start" xsi:type="Start" >
 			<label>Start</label>
@@ -126,7 +128,7 @@
 			<edge-type>DIRECT</edge-type>
 		</link>
 		<visual>
-			<bounds x="493" y="25" width="64" height="150"/>
+			<bounds x="494" y="24" width="62" height="151"/>
 		</visual>
 		<elementproperties>
 			<propertymap>
@@ -149,18 +151,18 @@
 		<normalizedformat id="3a058ebf-1fb7-4094-bd17-c58a1e1bc931">
 			<fields>
 				<field xsi:type="InternalMessageFieldType">
-					<name>ClientIDdef</name>
+					<name>ClientIDabc</name>
 					<type>String</type>
 					<notnull>true</notnull>
 					<length>100</length>
 				</field>
 				<field xsi:type="InternalMessageFieldType">
-					<name>InvoiceDatedef</name>
+					<name>InvoiceDateabc</name>
 					<type>DateTime</type>
 					<notnull>true</notnull>
 				</field>
 				<field xsi:type="InternalMessageSectionType">
-					<name>Itemfed</name>
+					<name>Itemabc</name>
 					<type>Section</type>
 					<minoccurs>1</minoccurs>
 					<maxoccurs>-1</maxoccurs>
@@ -225,11 +227,12 @@
 				<value>
 					<propertymap>
 						<property name="Author" value="Bala"/>
+						<property name="Client Id" value="abhishek.gautam@volantetech.com"/>
 						<property name="Creation Time" value="Mon May 16 12:36:21 IST 2005"/>
 						<property name="Designer Build" value="2025"/>
 						<property name="Last Author" value="abhishek.gautam"/>
-						<property name="Last Save Time" value="Mon Jul 20 15:42:20 IST 2026"/>
-						<property name="Revision Number" value="201"/>
+						<property name="Last Save Time" value="Tue Aug 04 12:29:49 IST 2026"/>
+						<property name="Revision Number" value="202"/>
 					</propertymap>
 				</value>
 			</property>
