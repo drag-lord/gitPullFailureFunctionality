@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <workspace name="AllMessages" type="Cartridge">
-	<cartridgefilename>D:/projects/TestCart/Messages/AllMessages.car</cartridgefilename>
+	<cartridgefilename>D:/projects/git-pull-failure-project/GitPullFailureFunctionality/GitPullFailureFunctionality/Messages/AllMessages.car</cartridgefilename>
 	<additionalTestClasspaths>
 	</additionalTestClasspaths>
 	<additional-properties>

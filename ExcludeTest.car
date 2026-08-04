@@ -56,7 +56,7 @@ The consolidated output will be displayed in the Output pane.
 			<type>Cartridge</type>
 			<relative-path>Messages/AllMessages.car</relative-path>
 			<path-with-macro>${cartridge.home}/Messages/AllMessages.car</path-with-macro>
-			<absolute-path>D:/projects/TestCart/Messages/AllMessages.car</absolute-path>
+			<absolute-path>D:/projects/git-pull-failure-project/GitPullFailureFunctionality/GitPullFailureFunctionality/Messages/AllMessages.car</absolute-path>
 		</reference>
 	</references>
 	<internalmessage name="Address" type="InternalMessage" id="39cb5c59-1548-4f4b-89d3-6eafc43dafc0">
@@ -69,19 +69,19 @@ The consolidated output will be displayed in the Output pane.
 			</xpath-namespaces>
 			<fields>
 				<field xsi:type="InternalMessageFieldType">
-					<name>Nameabc</name>
+					<name>Nameadef</name>
 					<type>String</type>
 					<notnull>true</notnull>
 					<length>-1</length>
 				</field>
 				<field xsi:type="InternalMessageSectionType">
-					<name>AddressElemabc</name>
+					<name>AddressElemdef</name>
 					<type>Section</type>
 					<minoccurs>1</minoccurs>
 					<maxoccurs>1</maxoccurs>
 					<fields>
 						<field xsi:type="InternalMessageFieldType">
-							<name>StreetNameabc</name>
+							<name>StreetNamedef</name>
 							<type>String</type>
 							<notnull>true</notnull>
 							<length>0</length>
@@ -99,7 +99,7 @@ The consolidated output will be displayed in the Output pane.
 							<length>0</length>
 						</field>
 						<field xsi:type="InternalMessageFieldType">
-							<name>CityCountryZipabc</name>
+							<name>CityCountryZipdef</name>
 							<type>String</type>
 							<notnull>true</notnull>
 							<length>0</length>
@@ -137,13 +137,13 @@ The consolidated output will be displayed in the Output pane.
 			</xpath-namespaces>
 			<fields>
 				<field xsi:type="InternalMessageFieldType">
-					<name>EmployeeNumberabc</name>
+					<name>EmployeeNumberdef</name>
 					<type>String</type>
 					<notnull>true</notnull>
 					<length>-1</length>
 				</field>
 				<field xsi:type="InternalMessageSectionType">
-					<name>Addressabc</name>
+					<name>Addressdef</name>
 					<type>Section</type>
 					<minoccurs>1</minoccurs>
 					<maxoccurs>1</maxoccurs>
@@ -247,22 +247,22 @@ The consolidated output will be displayed in the Output pane.
 					<maxoccurs>-1</maxoccurs>
 					<fields>
 						<field xsi:type="ASCIIDelimitedFieldType">
-							<name>ItemIDabc</name>
+							<name>ItemIDdef</name>
 							<datatype>String</datatype>
 							<required>true</required>
 						</field>
 						<field xsi:type="ASCIIDelimitedFieldType">
-							<name>Qtyabc</name>
+							<name>Qtydef</name>
 							<datatype>Integer</datatype>
 							<required>true</required>
 						</field>
 						<field xsi:type="ASCIIDelimitedFieldType">
-							<name>Priceabc</name>
+							<name>Pricedef</name>
 							<datatype>Double</datatype>
 							<required>true</required>
 						</field>
 						<field xsi:type="ASCIIDelimitedFieldType">
-							<name>Costabc</name>
+							<name>Costdef</name>
 							<datatype>Double</datatype>
 							<required>true</required>
 						</field>
@@ -399,7 +399,7 @@ The consolidated output will be displayed in the Output pane.
 			</headerfields>
 			<datafields>
 				<field xsi:type="UniversalSectionType">
-					<name>PurchaseOrder</name>
+					<name>PurchaseOrderdef</name>
 					<datatype>Section</datatype>
 					<minoccurs>1</minoccurs>
 					<maxoccurs>10</maxoccurs>
@@ -669,7 +669,7 @@ The consolidated output will be displayed in the Output pane.
 					</fields>
 				</field>
 				<field xsi:type="UniversalFieldType">
-					<name>CommentPO</name>
+					<name>CommentPOdef</name>
 					<datatype>String</datatype>
 					<required>false</required>
 					<length type="delimited">
@@ -1098,12 +1098,12 @@ The consolidated output will be displayed in the Output pane.
 		<mappingrules id="ac992b03-e65a-4756-b80c-bfbc1d9d4660">
 			<mappings>
 				<mapping type="one2one">
-					<source-field>AddressElemabc.StreetNameabc</source-field>
+					<source-field>AddressElemdef.StreetNamedef</source-field>
 					<destination-field>ClientID</destination-field>
 				</mapping>
 				<mapping type="formula">
-					<source-field><![CDATA[if(IsNotNull(AddressElemabc.Addr2))
-	Set(ParseDate(AddressElemabc.Addr2, "%Y-%M-%DT%h:%m:%s"));]]></source-field>
+					<source-field><![CDATA[if(IsNotNull(AddressElemdef.Addr2))
+	Set(ParseDate(AddressElemdef.Addr2, "%Y-%M-%DT%h:%m:%s"));]]></source-field>
 					<destination-field>InvoiceDate</destination-field>
 				</mapping>
 			</mappings>
@@ -1273,7 +1273,7 @@ The consolidated output will be displayed in the Output pane.
 		<normalizedformat id="7626b574-2092-4f42-863f-0e140a30b2ab">
 			<fields>
 				<field xsi:type="InternalMessageFieldType">
-					<name>CURRENCY CODE</name>
+					<name>CURRENCY CODEdef</name>
 					<type>String</type>
 					<description><![CDATA[ISO currency code]]></description>
 					<notnull>true</notnull>
@@ -1290,27 +1290,27 @@ The consolidated output will be displayed in the Output pane.
 					</platforminfo>
 				</field>
 				<field xsi:type="InternalMessageFieldType">
-					<name>CURRENCY NAME</name>
+					<name>CURRENCY NAMEdef</name>
 					<type>String</type>
 					<description><![CDATA[ISO currency name (part 1)]]></description>
 					<notnull>true</notnull>
 					<length>70</length>
 				</field>
 				<field xsi:type="InternalMessageFieldType">
-					<name>FRACTIONAL DIGIT</name>
+					<name>FRACTIONAL DIGITdef</name>
 					<type>Integer</type>
 					<description><![CDATA[Fractional digit for the currency (the number of decimals to be used)]]></description>
 					<notnull>true</notnull>
 				</field>
 				<field xsi:type="InternalMessageFieldType">
-					<name>COUNTRY CODE</name>
+					<name>COUNTRY CODEdef</name>
 					<type>String</type>
 					<description><![CDATA[ISO country code]]></description>
 					<notnull>false</notnull>
 					<length>2</length>
 				</field>
 				<field xsi:type="InternalMessageFieldType">
-					<name>COUNTRY NAME</name>
+					<name>COUNTRY NAMEdef</name>
 					<type>String</type>
 					<description><![CDATA[Country name (part 1)]]></description>
 					<notnull>false</notnull>
@@ -1377,23 +1377,23 @@ The consolidated output will be displayed in the Output pane.
 			<mappingrules id="ec3ce588-7469-4380-a4f8-72a5aea6f774">
 				<mappings>
 					<mapping type="one2one">
-						<source-field>CURRENCY CODE</source-field>
+						<source-field>CURRENCY CODEdef</source-field>
 						<destination-field>CURRENCY_CODE</destination-field>
 					</mapping>
 					<mapping type="one2one">
-						<source-field>CURRENCY NAME</source-field>
+						<source-field>CURRENCY NAMEdef</source-field>
 						<destination-field>CURRENCY_NAME</destination-field>
 					</mapping>
 					<mapping type="one2one">
-						<source-field>FRACTIONAL DIGIT</source-field>
+						<source-field>FRACTIONAL DIGITdef</source-field>
 						<destination-field>FRACTIONAL_DIGIT</destination-field>
 					</mapping>
 					<mapping type="one2one">
-						<source-field>COUNTRY CODE</source-field>
+						<source-field>COUNTRY CODEdef</source-field>
 						<destination-field>COUNTRY_CODE</destination-field>
 					</mapping>
 					<mapping type="one2one">
-						<source-field>COUNTRY NAME</source-field>
+						<source-field>COUNTRY NAMEdef</source-field>
 						<destination-field>COUNTRY_NAME</destination-field>
 					</mapping>
 				</mappings>
@@ -1951,9 +1951,9 @@ The consolidated output will be displayed in the Output pane.
 						<property name="Creation Time" value="Mon Sep 06 14:18:44 IST 2004"/>
 						<property name="Designer Build" value="2025"/>
 						<property name="Last Author" value="abhishek.gautam"/>
-						<property name="Last Save Time" value="Mon Jul 13 14:22:13 IST 2026"/>
+						<property name="Last Save Time" value="Mon Jul 20 15:42:20 IST 2026"/>
 						<property name="LastAuthor" value="Bala"/>
-						<property name="Revision Number" value="363"/>
+						<property name="Revision Number" value="365"/>
 					</propertymap>
 				</value>
 			</property>

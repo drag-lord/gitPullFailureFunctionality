@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <workspace xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="ProjectAttributesExclude" type="VolanteProject">
-	<selected-element root="/d:/projects/TestCart/Project.vpj">ProjectAttributesExclude</selected-element>
+	<selected-element root="D:/projects/git-pull-failure-project/GitPullFailureFunctionality/GitPullFailureFunctionality/ExcludeTest.car">ExcludeTest/CurrencyDetails/Persistence Designer/Database Table Design</selected-element>
+	<open-files>
+		<file>ProjectAttributesExclude\GitPullFailureFunctionality\Mappings\AllMappings</file>
+		<file>ProjectAttributesExclude\GitPullFailureFunctionality\Messages\AllMessages</file>
+		<file>ProjectAttributesExclude\GitPullFailureFunctionality\ExcludeTest</file>
+	</open-files>
+	<recent-files>
+		<file>ProjectAttributesExclude\GitPullFailureFunctionality\Mappings\AllMappings</file>
+		<file>ProjectAttributesExclude\GitPullFailureFunctionality\Messages\AllMessages</file>
+		<file>ProjectAttributesExclude\GitPullFailureFunctionality\ExcludeTest</file>
+	</recent-files>
 	<additionalTestClasspaths>
 	</additionalTestClasspaths>
 	<additional-properties>
