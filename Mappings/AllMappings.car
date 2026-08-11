@@ -26,27 +26,27 @@
 			<mappings>
 				<mapping type="one2one">
 					<source-field>ClientID</source-field>
-					<destination-field>ClientIDdef</destination-field>
+					<destination-field>ClientIDabc</destination-field>
 				</mapping>
 				<mapping type="one2one">
 					<source-field>InvoiceDate</source-field>
-					<destination-field>InvoiceDatedef</destination-field>
+					<destination-field>InvoiceDateabc</destination-field>
 				</mapping>
 				<mapping type="one2one">
-					<source-field>Records.ItemIDdef</source-field>
-					<destination-field>Itemdef.ItemID</destination-field>
+					<source-field>Records.ItemIDabc</source-field>
+					<destination-field>Itemabc.ItemID</destination-field>
 				</mapping>
 				<mapping type="one2one">
-					<source-field>Records.Qtydef</source-field>
-					<destination-field>Itemdef.Qty</destination-field>
+					<source-field>Records.Qtyabc</source-field>
+					<destination-field>Itemabc.Qty</destination-field>
 				</mapping>
 				<mapping type="one2one">
-					<source-field>Records.Pricedef</source-field>
-					<destination-field>Itemdef.Price</destination-field>
+					<source-field>Records.Priceabc</source-field>
+					<destination-field>Itemabc.Price</destination-field>
 				</mapping>
 				<mapping type="formula">
-					<source-field><![CDATA[Records.Qtydef * Records.Pricedef]]></source-field>
-					<destination-field>Itemdef.Cost</destination-field>
+					<source-field><![CDATA[Records.Qtyabc * Records.Priceabc]]></source-field>
+					<destination-field>Itemabc.Cost</destination-field>
 				</mapping>
 			</mappings>
 		</mappingrules>
@@ -151,18 +151,18 @@
 		<normalizedformat id="3a058ebf-1fb7-4094-bd17-c58a1e1bc931">
 			<fields>
 				<field xsi:type="InternalMessageFieldType">
-					<name>ClientIDdef</name>
+					<name>ClientIDabc</name>
 					<type>String</type>
 					<notnull>true</notnull>
 					<length>100</length>
 				</field>
 				<field xsi:type="InternalMessageFieldType">
-					<name>InvoiceDatedef</name>
+					<name>InvoiceDateabc</name>
 					<type>DateTime</type>
 					<notnull>true</notnull>
 				</field>
 				<field xsi:type="InternalMessageSectionType">
-					<name>Itemdef</name>
+					<name>Itemabc</name>
 					<type>Section</type>
 					<minoccurs>1</minoccurs>
 					<maxoccurs>-1</maxoccurs>
@@ -230,8 +230,8 @@
 						<property name="Creation Time" value="Mon May 16 12:36:21 IST 2005"/>
 						<property name="Designer Build" value="2025"/>
 						<property name="Last Author" value="abhishek.gautam"/>
-						<property name="Last Save Time" value="Thu Aug 06 12:22:26 IST 2026"/>
-						<property name="Revision Number" value="203"/>
+						<property name="Last Save Time" value="Tue Aug 11 13:07:50 IST 2026"/>
+						<property name="Revision Number" value="204"/>
 					</propertymap>
 				</value>
 			</property>
