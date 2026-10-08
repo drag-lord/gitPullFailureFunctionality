@@ -41,17 +41,17 @@
 					<maxoccurs>-1</maxoccurs>
 					<fields>
 						<field xsi:type="ASCIIDelimitedFieldType">
-							<name>ItemIDabc</name>
+							<name>ItemIDdef</name>
 							<datatype>String</datatype>
 							<required>true</required>
 						</field>
 						<field xsi:type="ASCIIDelimitedFieldType">
-							<name>Qtyabc</name>
+							<name>Qtydef</name>
 							<datatype>Integer</datatype>
 							<required>true</required>
 						</field>
 						<field xsi:type="ASCIIDelimitedFieldType">
-							<name>Priceabc</name>
+							<name>Pricedef</name>
 							<datatype>Double</datatype>
 							<required>true</required>
 						</field>
@@ -70,7 +70,7 @@
 				<fieldvalidations>
 					<fieldvalidation>
 						<name>Edef</name>
-						<fieldname>Records.Qtyabc</fieldname>
+						<fieldname>Records.Qtydef</fieldname>
 						<formula><![CDATA[$value > 10]]></formula>
 						<severity>error</severity>
 						<cascade>true</cascade>
@@ -203,8 +203,8 @@
 						<property name="Creation Time" value="Mon May 16 12:36:21 IST 2005"/>
 						<property name="Designer Build" value="2025"/>
 						<property name="Last Author" value="abhishek.gautam"/>
-						<property name="Last Save Time" value="Tue Aug 11 13:07:51 IST 2026"/>
-						<property name="Revision Number" value="212"/>
+						<property name="Last Save Time" value="Thu Oct 08 14:15:57 IST 2026"/>
+						<property name="Revision Number" value="214"/>
 					</propertymap>
 				</value>
 			</property>
